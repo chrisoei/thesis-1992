@@ -1,0 +1,59 @@
+\typeout{}
+\typeout{Compiling chapter7.tex}
+
+\chapter{Conclusion}
+This thesis has shown how the Walsh functions and many of the techniques
+that use it can be generalized to non-binary alphabets in a natural 
+and straightforward way.  This conclusion focuses on possible topics
+for future research that use generalized Walsh functions.
+
+Directions for future research using generalized Walsh functions and
+transforms include generalizing more of the theory for binary strings,
+such as the nonuniform Walsh-schema transform
+(Bridges \& Goldberg, 1991), creating deceptive problems
+(Liepins \& Vose, 1990b; Liepins \& Vose, 1991; Whitley, 1991a),
+operator-adjusted Walsh coefficients (Goldberg, 1989c),
+and the sufficient conditions for deception (Deb, Goldberg \& 1992).
+
+Another possibility is a probabilistic approach towards deception.
+Checking for deception requires evaluating the fitness function over
+every single point in the entire space, and for this reason, it has never
+been done for anything but tractable problems or problems that were
+handmade to be difficult.  Given the empirical evidence that smoother
+functions are easier to optimize, it seems possible that the probability
+that a function is deceptive depends on the asymptotic behavior
+of the generalized Walsh coefficients.  It would be useful to have either
+analytical results or a table of probabilities that relate how quickly
+the coefficients decay, the length of the string, the cardinality,
+and the order of static deception.  This approach might give a way
+of determining which representation is the likeliest to work for a given
+problem, and whether a GA is likely to solve the problem or not,
+using only knowledge about the smoothness of the fitness function.
+
+In the theory of nonlinear systems, there are two methods for finding
+solutions.  The first is to make a linear approximation; the second
+is to use some symmetry of the system to reduce the dimensionality
+of the problem.  The current theory for genetic algorithms is largely
+based on the first method; it makes predictions based on a linearized
+model of the system at generation zero.  As Grefenstette~(1991)
+pointed out, the validity of this linear approximation as time
+progresses is open to
+question.  Methods of analysis based on a symmetry of the system would
+be valid for any length of time.  N. Packard~(personal communication,
+1991) and this author have
+speculated that a renormalization group technique such as that used
+in analyzing lattice processes in physics could also be used for analyzing
+GAs.  The genetic algorithm, not including the user-defined fitness
+function, appears to have no fundamental length scale other than
+the string length, which corresponds to the lattice size in physics.
+Also, the way that low-order schemata combine to form higher-order
+schemata is reminiscent of a phase transition.  These two facts, along
+with some numerical experiments, suggest that scaling does occur in
+some situations and a renormalization group approach would be
+promising.  A renormalization group approach would involve treating
+blocks of characters in the string as a single character of higher cardinality,
+and then asking what would a genetic algorithm with this new representation do.
+This thesis, which provides a framework for a theory of genetic
+algorithms over non-binary strings, is a step in that direction.
+
+

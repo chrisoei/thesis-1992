@@ -1,0 +1,98 @@
+\typeout{}
+\typeout{Compiling chapter2.tex}
+\chapter{History}
+
+The question of what kind of problem is difficult for a GA started
+with Bledsoe~(1961).  Bledsoe described a situation he called
+{\em lethal dependence} in which a mutation in each of two genes would 
+be an improvement, but a mutation in either gene alone would lead to
+death.  
+
+Following Holland's schema theorem (Holland, 1975), Bethke~(1981)
+introduced the Walsh-schema transform for computing schema averages
+and gave some intuitive
+conditions for problem difficulty that depended on the smoothness of the fitness
+function and the asymptotic behavior of the Walsh coefficients.
+
+The smoothness arguments were also used by
+Weinberger, who started with Eigen's model for natural selection (Weinberger,
+1987) and studied correlation lengths on the ``landscape'' of the fitness
+function (Weinberger, 1988; Weinberger, 1990).
+Kauffman in (Kauffman, 1989; Kauffman, 1990; Kauffman \& Levin, 1987)
+ created and analyzed a model fitness landscape with tunable ruggedness, which
+was analyzed further in Manderick, de Weger, \& Spiessens~(1991).
+Lipsitch~(1991) used cellular automata rules to generate fitness
+landscapes and performed simulations to discover which classes of cellular 
+automaton created the hardest landscapes.  These analyses, however,
+dealt with hill-climbing on fitness functions and neglected the effects
+of crossover and the usefulness of schemata.  Also, Goldberg~(1990b)
+pointed out that the asymptotic behavior of the Walsh coefficients
+(and therefore the smoothness of the function) is not enough to
+insure the growth of important schemata.
+
+Holland's schema theorem came back into play when Goldberg~(1987)
+defined deception and introduced the minimal deceptive problem.
+The conditions for full static deception, a situation in which
+all low-order schemata are misleading, was introduced
+in Goldberg~(1989b).  The analysis of full static deception taking
+into account the schema disruption due to crossover and mutation was
+done in Goldberg~(1989c) using operator-adjusted Walsh coefficients.
+
+This line of reasoning gave rise to a host of techniques:
+a method for analyzing a GA population in which schemata are not
+distributed uniformly (Bridges, Goldberg, 1989),
+a method that uses Hadamard transforms to organize the deceptive conditions
+(Homaifar \& Qi, 1990; Homaifar, Qi, \& Fost, 1991),
+methods for constructing fully deceptive and intermediate deceptive
+functions (Deb \& Goldberg, 1991; Goldberg, 1990b; Liepins \& Vose, 1991;
+Whitley, 1991a), and a simpler set of criteria sufficient to
+insure deception (Deb \& Goldberg, 1992).
+This theory of deception has been used to explain some experimental
+results, such as why a problem that is easy for a GA might be difficult
+for a hill-climber (Wilson, 1991), and why certain GA test suites were
+solved so easily (Das \& Whitley, 1991; Davis, 1991).
+It also lead to some attacks 
+(Forrest \& Mitchell, 1991; Grefenstette, 1991; Mitchell \& Forrest, 1991; 
+Mitchell, Forrest, \& Holland, 1991; Tanese, 1989) that the lack of deception,
+where
+deception is defined by misleading schemata averages, is not enough by itself
+to insure GA convergence to the global optimum.
+
+Another mode of GA failure, apart from deception, has to do with the
+variance of schema fitnesses and sampling error
+(Davidor, 1991; Liepins \& Vose, 1990b; Schaffer, Eschelman \& Offut, 1991).
+There were a number of studies that introduced techniques
+for calculating schema fitness variances and 
+signal-to-noise ratios and explain how to size a GA population accordingly
+(Goldberg, Deb, \& Clark, 1991; Goldberg \& Rudnick, 1991;
+Rudnick, 1991; Rudnick \& Goldberg 1991).
+Connected with the issue of variance is multimodality, or having many
+high peaks that may confuse the GA (Goldberg, Deb \& Horn, 1992).
+Goldberg, Deb, \& Clark~(1991) give an overview and a summary of
+conditions for GA success.
+
+Generalizations of this basic theory of convergence include applications
+to permutation problems 
+(Kargupta, Deb, \& Goldberg, 1992; Sikora, 1991)
+and fitness functions with real parameters (Goldberg, 1990a;
+Wright, 1991).
+On a more abstract level are generalizations of the schema notion to arbitrary
+linear combinations of bits (Liepins \& Vose, 1990a), and arbitrary
+predicates (Vose \& Liepins, 1991; Radcliffe, 1991).
+Mason~(1991) generalized the notions of partition coefficients and
+static deception to finite non-binary alphabets.
+
+The other approaches to the question of GA convergence are few and
+sparse.
+Hart and Belew~(1991) points out that the general problem that the GA
+tries to solve is NP-hard.
+Kauffman~(1990) uses some concepts from information theory and
+the physics of phase transitions to show a connection between
+information redundancy and evolvability: minimal systems are not
+evolvable due to lethally dependent parameters.
+
+The work done on binary-coded GAs provides an extensive theoretical
+framework that hinges on the Walsh-schema transform.
+This thesis will focus on the theory of static deception generalized
+to non-binary alphabets and begins by generalizing the Walsh transform.
+

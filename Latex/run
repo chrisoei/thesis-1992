@@ -1,0 +1,5 @@
+#!/bin/csh
+
+latex thesis |more
+dvips -f <thesis.dvi >thesis.ps
+

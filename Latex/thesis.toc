@@ -1,0 +1,35 @@
+\contentsline {block}{Chapter}{1}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Preview}{1}
+\contentsline {section}{\numberline {1.2}Notation}{2}
+\contentsline {chapter}{\numberline {2}History}{4}
+\contentsline {chapter}{\numberline {3}Generalized Walsh Functions and Transforms}{8}
+\contentsline {section}{\numberline {3.1}Functions Over k-ary Strings}{8}
+\contentsline {subsection}{\numberline {3.1.1}k-ary Walsh Functions}{9}
+\contentsline {subsection}{\numberline {3.1.2}k-ary Walsh Transform}{10}
+\contentsline {subsection}{\numberline {3.1.3}Some Theorems and Proofs}{12}
+\contentsline {section}{\numberline {3.2}Functions Over $\mathaccent "017E {k}$-ary Strings}{17}
+\contentsline {subsection}{\numberline {3.2.1}$\mathaccent "017E {k}$-ary Walsh Functions}{17}
+\contentsline {section}{\numberline {3.3}Functions Over Reals}{18}
+\contentsline {section}{\numberline {3.4}Reduction to Smaller Alphabets}{20}
+\contentsline {section}{\numberline {3.5}Generalizing the Fast Walsh Transform}{26}
+\contentsline {chapter}{\numberline {4}Using Generalized Walsh Coefficients to Determine Schema Averages}{30}
+\contentsline {chapter}{\numberline {5}Using Generalized Hadamard Transforms to Detect Deception}{34}
+\contentsline {section}{\numberline {5.1}Deception in Non-binary Strings}{34}
+\contentsline {section}{\numberline {5.2}Hadamard Transform}{37}
+\contentsline {section}{\numberline {5.3}Detecting Deception}{38}
+\contentsline {chapter}{\numberline {6}Variance of Fitness}{42}
+\contentsline {chapter}{\numberline {7}Conclusion}{48}
+\contentsline {block}{Appendix}{51}
+\contentsline {chapter}{\numberline {A}{Mathematica 2.0\/} Programs}{51}
+\contentsline {section}{\numberline {A.1}Generalized Walsh Functions Over k-ary Strings}{51}
+\contentsline {section}{\numberline {A.2}Generalized Walsh Functions Over More Arbitrary Strings}{52}
+\contentsline {section}{\numberline {A.3}Generalized Fast Walsh Transform Over k-ary Strings}{53}
+\contentsline {section}{\numberline {A.4}Generalized Fast Walsh Transform Over More Arbitrary Strings}{55}
+\contentsline {section}{\numberline {A.5}Converting Schema Averages to Walsh Coefficients}{57}
+\contentsline {section}{\numberline {A.6}Hadamard Transforms}{60}
+\contentsline {section}{\numberline {A.7}Determining Deception Using Hadamard Transforms}{61}
+\contentsline {section}{\numberline {A.8}Determining Deception to Specified Order}{64}
+\contentsline {section}{\numberline {A.9}Fully Deceptive Conditions}{65}
+\contentsline {chapter}{\numberline {B}Another Basis for Generalized Transforms}{69}
+\contentsline {chapter}{References}{74}

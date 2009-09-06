@@ -1,0 +1,187 @@
+\typeout{}
+\typeout{Compiling chapter6.tex}
+
+\chapter{Variance of Fitness}
+Although the schema theorem predicts the expected growth rate of a schema
+in a population, the finite population size introduces a sampling error
+that can lead to large deviations from expectations and can affect GA
+convergence 
+(Goldberg \& Rudnick, 1991; 
+Goldberg, Deb, \& Clark, 1991; 
+Rudnick \& Goldberg, 1991; 
+Schaffer, Eschelman, \& Offutt, 1991).
+
+The full theory of how this sampling error affects GA behavior is beyond
+the scope of this thesis.  Only the methods for calculating the signal
+and noise in a competition partition (Rudnick \& Goldberg, 1991) will be
+extended to non-binary alphabets.
+
+\begin{definition}[Index Set]
+The index set $G(h)$ of a schema $h$ is the set of indices of the
+generalized Walsh coefficients used to express the function average
+over the schema $h$.
+\end{definition}
+\begin{example}
+In the space of strings of length 3 taken from a ternary alphabet,
+\begin{eqnarray}
+G((*,*,*))&=&\{(0,0,0)\},
+	\nonumber\\
+G((0,*,*))&=&G((1,*,*))=G((2,*,*))=\{(0,0,0),(1,0,0),(2,0,0)\}=(*,0,0),
+	\nonumber\\
+G((0,0,*))&=&G((1,2,*))=(*,*,0).
+\end{eqnarray}
+This notation helps to make the definitions of signal and noise clearer
+and more compact.
+
+\end{example}
+
+\begin{definition}[Collateral Noise]
+The collateral noise $\sigma_h$ for a schema $h$ is defined by the
+following:
+\begin{eqnarray}
+\sigma_h^2=\mbox{\rm var}(f(h))&=&\frac{1}{|h|} \sum{\left|f(x)-\frac{1}{|h|}
+	\sum{f(y)}\right|^2};\nonumber\\
+&=& \frac{1}{|h|} \sum{|f(x)|^2} -\left|\frac{1}{|h|} \sum{f(x)}\right|^2;
+	\nonumber\\
+&=& \dirac{f(x)^2}_h-\dirac{f(x)}_h^2.
+	\label{collat}
+\end{eqnarray}
+$\dirac{f(x)}_h$ indicates the average of $f(x)$ where
+$x$ ranges over schema $h$, $\dirac{f^2(x)}_h$ indicates the
+average of $f^2(x)$ over $h$,
+and $|h|$ is the number of individuals represented by schema $h$.
+\end{definition}
+This definition differs from Rudnick and Goldberg~(1991), which defines
+the collateral noise as $\sigma_h^2$.
+
+\begin{definition}[Partition Signal]
+The signal $S(J)$ of a competition partition $J$ is defined as
+\begin{equation}
+S^2(J)=\dirac{|f(h)|^2}_J-|\dirac{f(h)}_J|^2.
+	\label{signal}
+\end{equation}
+\end{definition}
+$\dirac{f(h)}_J$ denotes the average of schema averages $f(h)$ where
+$h$ runs over $J$.  $\dirac{|f(h)|^2}_J$ denotes the average of the
+absolute value squares of schema averages in the competition partition $J$.
+
+The first term in Equation~\ref{signal} can be written as
+\begin{equation}
+\dirac{|f(h)|^2}_J=\frac{1}{|J|}\sum_{h \epsilon J}{|f(h)|^2},
+\end{equation}
+where $|J|$ is the number of schemata in J.  Substituting the
+expression for $f(h)$ in terms of generalized Walsh coefficients gives
+\begin{equation}
+\dirac{|f(h)|^2}_J=\frac{1}{|J|} \prod_m{k_m^{-1}}
+	\sum_{h \epsilon J}
+	\left| \sum_{\vec\jmath \epsilon G(h)}
+		{w_{\vec\jmath}
+		\Psi^{(\vec k)}_{\vec\jmath}(h)} \right|^2.
+\end{equation}
+Expanding the quadratic yields
+\begin{equation}
+\dirac{|f(h)|^2}_J=\frac{1}{|J|} \prod_m{k_m^{-1}}
+	\sum_{h \epsilon J}
+	\sum_{\vec\jmath,\vec l \epsilon G(h)}{
+		w_{\vec\jmath}\, \overline{w}_{\vec l}
+		\Psi_{\vec\jmath \ominus \vec l}^{(\vec k)}(h)},
+\end{equation}
+where $j \ominus l=(j_1-l_1 \mbox{\ mod\ } k_1,j_2-l_2 \mbox{\ mod\ } k_2,
+\ldots,
+        j_n-l_n \mbox{\ mod\ } k_n)$.
+Due to the orthogonality of the generalized Walsh functions, this reduces to
+\begin{equation}
+\dirac{|f(h)|^2}_J=\frac{1}{|J|} \prod_m{k_m^{-1}}
+	\sum_{\vec\jmath \epsilon G(h)}{|w_{\vec\jmath}|^2}.
+\end{equation}
+
+The second term in Equation~\ref{signal} reduces to the following product:
+\begin{equation}
+|\dirac{f(h)}_J|^2=\prod_m{k_m^{-1}} |w_0|^2.
+\end{equation}
+Thus, Equation~\ref{signal} simplifies to:
+\begin{eqnarray}
+S^2(J)&=&\sum_{\vec\jmath\epsilon G(J)} (|w_{\vec\jmath}|^2-|w_0|^2);
+	\nonumber\\
+	&=&\sum_{\vec\jmath\epsilon G(J)-\{0\}} |w_{\vec\jmath}|^2.
+		\label{signalwalsh}
+\end{eqnarray}
+
+\begin{example}
+Consider (3,3,3)-ary strings and the competition partition $J=(F,F,*)$.
+The square of the partition signal of J is
+\begin{eqnarray}
+S^2(J)&=& |w_{(0,1,0)}|^2 + |w_{(0,2,0)}|^2\nonumber\\
+	&&+ |w_{(1,0,0)}|^2 + |w_{(1,1,0)}|^2+ |w_{(1,2,0)}|^2
+		\nonumber\\
+	&&+ |w_{(2,0,0)}|^2 + |w_{(2,1,0)}|^2+ |w_{(2,2,0)}|^2.
+\end{eqnarray}
+\end{example}
+\begin{definition}[Partition RMS Noise]
+The root-mean-squared noise $C(J)$ of a competition partition $J$ is
+defined as the
+root-mean-square of the collateral noises for each of the
+schema $h$ in the partition.
+\begin{equation}
+C^2(J)=\dirac{\sigma_h^2}_J
+\end{equation}
+\end{definition}
+In Chapter~3, there were some examples (\ref{varone},\ref{vartwo})
+of computing the $\dirac{f(x)^2}_h$ term in the expression for
+$\sigma_h^2$ (\ref{collat}).  These examples can be generalized
+to give the following result.
+For the complete derivations for binary strings, see
+Goldberg \& Rudnick~(1991) and Rudnick \& Goldberg~(1991).
+\begin{equation}
+\sigma_h^2=\prod_m{k_m^{-1}}\sum_{(\vec\jmath,\vec l)\epsilon G^2_{\ominus}(h)-G^2(h)}{
+\overline{w}_{\vec\jmath}\, w_{\vec l}
+\Psi^{(\vec k)}_{\vec l \ominus \vec\jmath}(h)}
+\end{equation}
+$G^2(h)=G(h)\times G(h)$, $G^2_{\ominus}(h)=\{(\vec\jmath,\vec l):\vec \jmath
+	\ominus \vec l \epsilon G(h)\}$, and $\vec\jmath\ominus\vec l=
+	(j_1-l_2 \mbox{\ mod\ }k_1,j_2-l_2 \mbox{\ mod\ }k_2,\ldots,
+		j_n-l_n \mbox{\ mod\ }k_n)$.
+As before, the off-diagonal terms vanish, leaving
+\begin{equation}
+C^2(J)=\sum_{\vec\jmath\epsilon\tilde{G}(J)}{|w_{\vec\jmath}|^2}
+\end{equation}
+where $\tilde{G}(J)$ is the complement of the set $G(J)$.
+
+\begin{example}
+Consider again the above example using
+(3,3,3)-ary strings and the competition partition $J=(F,F,*)$.
+The square of the partition RMS noise of J is
+\begin{eqnarray}
+C^2(J)&=& |w_{(0,0,1)}|^2 + |w_{(0,0,2)}|^2 + |w_{(0,1,1)}|^2+|w_{(0,1,2)}|^2\nonumber\\
+        &&+ |w_{(0,2,1)}|^2 + |w_{(0,2,2)}|^2+ |w_{(1,0,1)}|^2+|w_{(1,0,2)}|^2
+                \nonumber\\
+        &&+ |w_{(1,1,1)}|^2 + |w_{(1,1,2)}|^2+ |w_{(1,2,1)}|^2+|w_{(1,2,2)}|^2
+                \nonumber\\
+        &&+ |w_{(2,0,1)}|^2 + |w_{(2,0,2)}|^2+ |w_{(2,1,1)}|^2+|w_{(2,1,2)}|^2
+                \nonumber\\
+        &&+ |w_{(2,2,1)}|^2 + |w_{(2,2,2)}|^2.
+\end{eqnarray}
+\end{example}
+
+
+For large alphabets
+and fairly smooth fitness functions, we can use the alphabet-size reduction
+described earlier to get a good approximation to the variances with
+relatively little effort.  For instance, the variance of Test Function 2 is
+\begin{eqnarray}
+\int_0^1{(x^2 (1-x)^2 (1/2-x)^3)^2 dx}&&\nonumber\\
+	-\left(\int_0^1{(x^2(1-x)^2(1/2-x)^3) dx}
+	\right)^2&=&1.734\times 10^{-7}.
+\end{eqnarray}
+We can approximate the same calculation using the 7-ary reduction.
+\begin{equation}
+\frac{1}{7}(|w_1|^2+|w_2|^2+|w_3|^2+|w_4|^2+|w_5|^2+|w_6|^2)=1.723\times 10^{-7}.
+\end{equation}
+
+This chapter has shown that the signal and noise calculations for functions
+over binary strings can be generalized to non-binary strings as well.
+The signal-to-noise calculations and the Hadamard transforms 
+are tools which examine two independent
+modes by which a genetic algorithm can fail to converge to the global optimum.
+
+

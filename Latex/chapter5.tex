@@ -1,0 +1,224 @@
+\typeout{}
+\typeout{Compiling chapter5.tex}
+
+\chapter{Using Generalized Hadamard Transforms to Detect Deception}
+\section{Deception in Non-binary Strings}
+Hadamard transforms provide a convenient way of checking
+deceptive conditions in a systematic manner (Homaifar, Qi, Fost, 1991;
+Homaifar, Qi, 1990).  In this chapter, the Hadamard transform
+will be generalized to non-binary strings.
+
+Deception in functions over non-binary strings is qualitatively different than
+deception in functions over binary strings.  In order to get full deception
+with binary strings, all schemas of order $n-1$ or less must point towards
+the complement of the global optimum.  With non-binary strings, all that
+is required is that all schemas of order $n-1$ or less point away from the
+global optimum.  Mason uses this as his definition of deception (Mason, 1991).
+
+\begin{example}
+Consider a function $f$ over a ternary string of length
+3 whose global optimum is at (2,2,2).  Then some of the conditions necessary
+for deception are as follows:
+\begin{eqnarray}
+f((2,*,*)) &<& f((0,*,*)) \mbox{\ or\ } f((1,*,*)); \nonumber\\
+f((2,2,*)) &<& f((0,0,*)) \mbox{\ or\ } f((0,1,*)) \mbox{\ or\ } f((1,0,*)) \mbox{\ or\ } f((1,1,*)); \nonumber\\
+f((2,2,*)) &<& f((1,2,*)) \mbox{\ or\ } f((0,2,*)); \nonumber \\
+f((2,2,*)) &<& f((2,0,*)) \mbox{\ or\ } f((2,1,*)); \nonumber \\
+f((1,2,*)) &<& f((1,0,*)) \mbox{\ or\ } f((1,1,*)).
+\end{eqnarray}
+\end{example}
+
+Mutation for non-binary strings works differently than mutation for binary
+strings.  Some mutation operators, such as creeping mutation, mutate
+characters to nearby characters.  For example, using a 10-ary alphabet,
+the string (0,0,0) is much more likely to be perturbed to (1,0,0) than (9,0,0).
+Similarly, mutations on a real number might be implemented by adding noise
+with a gaussian distribution.  If the fitness function is not too
+discontinuous, then these kinds of mutations can work as a sort of gradient
+descent to help convergence (Bledsoe, 1961).  The analysis of how the distribution of
+perturbations affects convergence is beyond the scope of this thesis
+and overlaps the theory of simulated annealing (Kirkpatrick,
+Gelatt, \& Vecci, 1983; Szu \& Hartley, 1987).
+Assuming that the algorithm uses localized perturbations, it is reasonable to define a fully
+deceptive function as a function whose order $n-1$ or less schemas point as far
+away from the global optima as possible.  Now the deceptive conditions
+become more straightforward:
+\begin{eqnarray}
+f((0,*,*)) &>& f((1,*,*)), \nonumber\\
+f((0,*,*)) &>& f((2,*,*)), \nonumber\\
+f((0,0,*)) &>& f((0,1,*)), \nonumber\\ 
+f((0,0,*)) &>& f((0,2,*)), \nonumber\\ 
+f((0,0,*)) &>& f((1,0,*)), \nonumber\\ 
+f((0,0,*)) &>& f((1,1,*)), \nonumber\\ 
+f((0,0,*)) &>& f((1,2,*)), \nonumber\\
+f((0,0,*)) &>& f((2,0,*)), \nonumber\\
+f((0,0,*)) &>& f((2,1,*)), \nonumber\\
+f((0,0,*)) &>& f((2,2,*)),
+\end{eqnarray} 
+and all permutations of the strings above.
+
+\section{Hadamard Transform}
+Consider the competition partition in which the fixed positions
+are at $j_1,j_2,\ldots,j_p$, where $p$ is the order of the partition.
+\begin{definition}[Generalized Hadamard Transform]
+Define the generalized Hadamard transform matrix $H$ as:
+\begin{equation} 
+H=h_1 \otimes h_2 \otimes \ldots \otimes h_p,
+\end{equation}
+where $\otimes$ is the tensor product:
+\begin{equation}
+\left(\begin{array}{cc}
+	a & b\\
+	c & d
+	\end{array} \right)
+\otimes \left(\begin{array}{cc}
+	e & f\\
+	g &h
+	\end{array} \right)
+= \left(\begin{array}{cccc}
+	ae& af& be& bf\\
+	ag& ah& bg& bh \\
+	ce& cf& de& df \\
+	cg& ch& dg& dh
+\end{array}\right),
+\end{equation}
+and $h_m$ is defined as follows:
+\begin{equation}
+h_m = \left(\begin{array}{ccccc}
+		1 & 1& 1& \ldots &1 \\
+		1 & e^{2 \pi \imath /k_{j_m}} & e^{4 \pi \imath/k_{j_m}} &\ldots &
+			e^{(k_{j_m}-1) 2 \pi \imath/k_{j_m}} \\
+		\vdots &\vdots &\vdots &\ddots &\vdots \\
+		1 & e^{(k_{j_m}-1) 2 \pi \imath/k_m} &
+			e^{(k_{j_m}-1) 4 \pi \imath/k_m} &\ldots&
+			e^{(k_{j_m}-1) (k_{j_m}-1) 2 \pi \imath/k_{j_m}}
+	\end{array}
+	\right).
+\end{equation}
+\end{definition}
+The generalized Hadamard transform will be used in the next section to
+compute the conditions for deception.
+\section{Detecting Deception}
+Now we make the important assumption that the global optimum is at
+$(k_1-1,k_2-1,\ldots,k_n-1)$ and all schemas of order $n-1$ or less
+must point to $(0,0,\ldots,0)$.  
+This definition of deception requires that the lower-order schemata
+lead as far away from the global optimum as possible.
+This differs from Mason's definition of deception, which requires only
+that the lower-order schemata do not point to the global optimum.
+Using this new definition, we can now define the
+matrix $M$ such that the deceptive conditions for that partition become
+$M W>0$, where
+\begin{equation}
+M= \left(\begin{array}{c}
+	\mbox{1st row of H-2nd row of H} \\
+	\mbox{1st row of H-3rd row of H} \\
+	\vdots \\
+	\mbox{1st row of H-last row of H}
+	\end{array}
+	\right),
+\end{equation}
+and $W$ is the vector of generalized Walsh coefficients used in the
+competition partition.
+
+\begin{example}
+Let $w$ be the Walsh coefficients for the fitness function $f$
+over (3,2,2)-ary strings.  Consider the competition partition $(F,*,*)$, where
+$F$ represents a fixed position and * represents a wildcard character.  Then
+\begin{eqnarray}
+W&=&(w_{(0,0,0)},w_{(1,0,0)},w_{(2,0,0)})^T, \nonumber\\
+H&=&\left(\begin{array}{ccc}
+	1&1&1\\
+	1&e^{2 \pi \imath/3}&e^{4 \pi \imath/3}\\
+	1&e^{4 \pi \imath/3}&e^{8 \pi \imath/3}
+	\end{array}
+	\right), \nonumber\\
+M&=&\left(\begin{array}{ccc}
+	0&1-e^{2 \pi \imath/3}&1-e^{4 \pi \imath/3} \\
+	0&1-e^{4 \pi \imath/3}&1-e^{8 \pi \imath/3}
+	\end{array}
+	\right).
+\end{eqnarray}
+The condition that $MW>0$ becomes the following:
+\begin{eqnarray}
+(1-e^{2\pi \imath/3})w_{(1,0,0)}+(1-e^{4\pi\imath/3})w_{(2,0,0)} &>&0;\nonumber\\
+(1-e^{4\pi \imath/3})w_{(1,0,0)}+(1-e^{8\pi\imath/3})w_{(2,0,0)} &>&0.
+\end{eqnarray}
+When we substitute function values for the Walsh coefficients in the above
+expression, we get
+\begin{eqnarray}
+f((0,*,*)) &>& f((1,*,*)), \nonumber\\
+f((0,*,*)) &>& f((2,*,*)),
+\end{eqnarray}
+which are indeed the deceptive conditions corresponding to that partition.
+\end{example}
+
+\begin{example}
+Let us repeat the above calculations for the competition partition
+$(F,D,F)$:
+\begin{eqnarray}
+W&=&(w_{(0,0,0)},w_{(0,0,1)},w_{(1,0,0)},w_{(1,0,1)},w_{(2,0,0)},w_{(2,0,1)})^T,
+	\nonumber\\
+H&=&\left(\begin{array}{cccccc}
+	1&1&1&1&1&1\\
+	1&-1&1&-1&1&-1\\
+	1&1&e^{2 \pi\imath/3}&e^{2\pi\imath/3}&e^{4\pi\imath/3}&
+		e^{4\pi\imath/3}\\
+	1&-1&e^{2\pi\imath/3}&-e^{2\pi\imath/3}&e^{4\pi\imath/3}&
+		-e^{4\pi\imath/3}\\
+	1&1&e^{4\pi\imath/3}&e^{4\pi\imath/3}&e^{8 \pi\imath/3}&
+		e^{8\pi\imath/3}\\
+	1&-1&e^{4\pi\imath/3}&-e^{4\pi\imath/3}&e^{8 \pi\imath/3}&
+		-e^{8\pi\imath/3}
+	\end{array} \right), \nonumber\\
+M&=&\left(\begin{array}{cccccc}
+	0&2&0&2&0&2\\
+	0&0&1-A &1-A&1-B&1-B\\
+	0&2&1-A&1+A&1-B&1+B\\
+	0&0& 1-B&1-B &1-A&1-A\\
+	0&2&1-B&1+A&1-A&1+B
+\end{array} \right),
+\end{eqnarray}
+where $A=e^{2 \pi \imath/3}$ and $B=e^{-2 \pi \imath/3}$.  $MW>0$ gives
+\begin{eqnarray}
+2 w_{(0,0,1)} + 2 w_{(1,0,1)} + 2 w_{(2,0,1)} &>& 0,\nonumber\\
+(1-A) w_{(1,0,0)} + (1-A) w_{(1,0,1)} + (1-B) w_{(2,0,0)}+(1-B) w_{(2,0,1)}&>&0,
+	\nonumber\\
+2 w_{(0,0,1)} + (1-A) w_{(1,0,0)} +(1+A) w_{(1,0,1)} + (1-B) w_{(2,0,0)} +&&
+	\nonumber\\
+	(1+B) w_{(2,0,1)} &>& 0, \nonumber\\
+(1-B) w_{(1,0,0)} +(1-B)w_{(1,0,1)} + (1-A)w_{(2,0,0)}+(1-A)w_{(2,0,1)}&>&0,
+	\nonumber\\
+2 w_{(0,0,1)} +(1-B) w_{(1,0,0)} +(1+B) w_{(1,0,1)} +(1-A) w_{(2,0,0)}+&&
+	\nonumber\\
+	(1+A)w_{(2,0,1)} &>&0.
+\end{eqnarray}
+Translated into function values, this gives the following set of
+inequalities:
+\begin{eqnarray}
+f((0,*,0)) &>& f((0,*,1)), \nonumber\\
+f((0,*,0)) &>& f((1,*,0)), \nonumber\\
+f((0,*,0)) &>& f((1,*,1)), \nonumber\\
+f((0,*,0)) &>& f((2,*,0)), \nonumber\\
+f((0,*,0)) &>& f((2,*,1)),
+\end{eqnarray}
+which are the deceptive conditions corresponding to the competition
+partition $(F,D,F)$.
+\end{example}
+
+For a function to be deceptive at order $p$ requires that all order $p$
+schemas lead as far away to the global optimum as possible.  Since there
+are $n \choose p$ ways of choosing $p$ fixed positions
+among the $n$ characters, there are that many competition partitions at
+that order.  In the above example, the function is deceptive at order 1 if
+it is deceptive in the partitions (F,D,D), (D,F,D), and (D,D,F).
+For full deception, the function must be deceptive at all orders between
+1 and $n-1$ inclusive.  Mathematica routines for computing all of the
+above are included in Appendix~A.
+
+This chapter has defined the deceptive conditions for functions over
+non-binary alphabets.  As mentioned in Chapter~2, deception is only one
+of the many reasons why a genetic algorithm may fail.  The next chapter
+focusses on another mode of failure: the variances of schema fitness.
+
+

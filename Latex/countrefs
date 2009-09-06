@@ -1,0 +1,4 @@
+#!/bin/csh
+
+grep bibitem references.tex |wc -l
+

@@ -1,0 +1,148 @@
+%
+%%	The ``thesis'' document style is a report style (12 pt)
+%%	with some additions that make title, abstract,
+%%	acknowledgment and preface pages which satisfy
+%%	the University of Illinois bureaucracy.
+%%
+%%	You must have ``thesis.sty'' in your home directory
+%%	(or in the TeX/inputs directory) for these commands to work.
+%
+
+
+\documentstyle[thesis,12pt,twoside,refs]{report}
+
+% The default line-spacing is 1.5.  You may want to use 2.0 for
+% intermediate drafts.  U of I demands 1.5 or 2.0.
+% Change this by setting the \linespacing{} variable
+% DON'T USE THE \baselinestretch{} command
+
+\linespacing{2.0}
+
+% Use '\input epsf' if you want to insert Encapsulated PostScript (EPS)
+% figures in the text.  '\epsffile{file.ps}' includes 'file.ps'.
+
+\input epsf
+
+% Use \includeonly{} to compile only the given chapters
+
+%\includeonly{chapter1}
+%\includeonly{othermodels}
+
+
+%% End of the preamble
+
+
+\begin{document}
+
+%
+% The thesis.sty file is set up to work with a 3-line title,
+% thus the \\ at the end of the first two lines.
+% The title must be ALL CAPITAL LETTERS.
+% If you have a different number of lines you will have to
+% modify ``thesis.sty'' to get the correct U. of I. spacing on
+% your title page.
+%
+
+\title{
+WALSH FUNCTION ANALYSIS OF \\
+GENETIC ALGORITHMS \\
+OF NON-BINARY STRINGS
+}
+
+% Your name must be exactly as it is in the Grad College records
+% Again, this should be ALL CAPITAL LETTERS
+
+\author{CHRISTOPHER KIANKHO OEI}
+
+% The spacing here is correct for 2 other degrees.
+% If you have just 1 other degree (or more than 2) you will
+% have to adjust the spacing in the style file, 'thesis.sty'.
+
+
+\prevdegrees{
+B.S., California Institute of Technology, 1990 \\
+M.S., University of Illinois, 1991
+}
+
+\department{Computer Science}
+
+\degree{Master of Science}
+
+% The date must be when you graduate, not when you submit your thesis.
+
+\thesisdate{1992}
+
+
+% These variables are for the optional abstract page
+% The \abauthor is small letters while \author is in caps
+
+\abauthor{Christopher Kiankho Oei}
+\shortdegree{M.S.}
+\advisor{David E. Goldberg}
+
+% And now start the thesis, begining with the title page
+
+\maketitle
+
+%
+% The ``misc.tex'' file contains a bunch of abbreviations and macros
+% specific to my individual thesis.
+%
+
+\input{misc}
+
+
+% These next three files generate the respective pages
+% All three are optional.
+
+\include{abstract}
+%\include{acknowledgments}
+
+%\include{preface}	% I don't have a preface...yet
+
+
+% You must have a Table of Contents at the U. of I.
+
+\tableofcontents
+
+% \setupthecounters resets the page numbers to arabic style and the
+% counter to 1 (remember, the previous pages used small roman numbers).
+% This should directly precede the first real text (i.e. chapter 1).
+
+\setupthecounters
+
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+\include{chapter5}
+\include{chapter6}
+\include{chapter7}
+
+\appendix
+\include{appendix}
+\include{appendix2}
+
+% Now the references/bibliography.  I have redefined the \bibliography{}
+% command in 'thesis.sty' so that it says 'References' at the top of
+% the page rather than 'Bibliography'.
+
+\addcontentsline{toc}{chapter}{References}
+
+% I use BibTeX.
+% If you don't, insert the \include{bibliography} line here
+% instead of the next two BibTeX lines.
+
+%\bibliographystyle{physrev}
+%\bibliography{general,crystal,infotheory,geneticalg}
+
+\include{references}
+
+% Finally, put the Vita after the references.
+% BibTeX doesn't like this, so comment out the \input{vita}
+% until AFTER BibTeX is done collecting all the references.
+
+%\addcontentsline{toc}{chapter}{Vita}
+%\include{vita}
+
+\end{document}

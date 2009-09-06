@@ -1,0 +1,622 @@
+\typeout{}
+\typeout{Compiling chapter3.tex}
+
+\chapter{Generalized Walsh Functions and Transforms}
+\section{Functions Over k-ary Strings}
+This chapter examines functions over strings of length $n$ whose
+characters are
+taken from a k-ary alphabet.  For example, we can use this method to analyze
+a function over a ternary alphabet string.  
+The basic idea is to treat each character in the string as a separate
+dimension, then take the n-dimensional Fourier series.  The exact similarity
+between the generalized Walsh transform and Fourier series will be discussed
+later.  The point is that it is useful to think of the Walsh functions
+as functions of $n$ variables rather than functions of a single variable.
+\subsection{k-ary Walsh Functions}
+\begin{definition}
+Define the k-ary Walsh functions as
+\begin{equation}
+\psijkx = {\frac{1}{\sqrt{k^n}}
+	e^{\frac{2 \pi \imath}{k} \vec x \cdot\vec \jmath }},
+	\label{karywalshfunction}
+\end{equation}
+where the vector $\vec \jmath =(j_1,j_2,\ldots,j_n)$ is the k-ary representation
+of $j$, and the vector $\vec x =(x_1,x_2,\ldots,x_n)$ is the k-ary 
+representation of $x$.
+\end{definition}
+\begin{theorem}
+The k-ary Walsh functions satisfy the following normalization condition:
+\begin{equation}
+\sum_{\vec x}{\barpsijkx
+	\Psi^{(k)}_{\vec l}(\vec x)}=
+	\delta_{j_1 l_1} \delta_{j_2 l_2} \ldots \delta_{j_n l_n}
+\end{equation}
+where barred quantities refers to the complex conjugate and $\delta$ is the
+Kronecker delta.  The sum is over all distinct values of $\vec x$.
+\end{theorem}
+\begin{proof}
+\begin{eqnarray}
+\sum_{\vec x}{\barpsijkx
+	\Psi^{(k)}_{\vec l}(\vec x)} 
+	&= &\frac{1}{k^n}\sum_{x_1=0}^{k-1}{\sum_{x_2=0}^{k-1}{\ldots
+		e^{- \frac{2 \pi \imath}{k} x_1 j_1}
+		e^{\frac{2 \pi \imath}{k} x_1 l_1}
+		e^{- \frac{2 \pi \imath}{k} x_2 j_2}
+		e^{\frac{2 \pi \imath}{k} x_2 l_2}
+		\ldots
+		}} ;\nonumber \\
+	&= & (\frac{1}{k}\sum_{x_1=0}^{k-1}
+		{e^{\frac{2 \pi \imath}{k} x_1 (l_1-j_1)}})
+	     (\frac{1}{k}\sum_{x_2=0}^{k-1}
+		{e^{\frac{2 \pi \imath}{k} x_2 (l_2-j_2)}})
+		\ldots ;\nonumber \\
+	&=& \delta_{j_1 l_1} \delta_{j_2 l_2} \ldots \delta_{j_n l_n}.
+\end{eqnarray}
+\end{proof}
+When $k=2$, the k-ary Walsh functions become the usual Walsh functions,
+up to a normalization constant.  Throughout this thesis, the normalization
+is chosen so that the inner product of generalized Walsh functions is
+a Kronecker delta function.  This differs from the usual normalization
+convention for Walsh functions, but it has an intuitive appeal when deriving
+theorems and proofs; these functions are orthonormal, not merely
+orthogonal.
+
+\begin{example}
+Take strings of length 2, $n=2$, using a ternary
+alphabet, $k=3$.  Evaluating the fourth function, $\vec{\jmath}=(1,1)$, at 
+the second position, $\vec{x}=(0,2)$ gives the following:
+\begin{equation}
+\Psi^{(3)}_{(1,1)}((0,2))=\frac{1}{\sqrt{3^2}}
+	e^{\frac{2 \pi \imath}{3} (1,1) \cdot (0,2)}=
+	-\frac{1}{6} - \frac{\sqrt{3}}{6} \imath.
+\end{equation}
+\end{example}
+
+Another way of looking at the Walsh functions  \psijkx\
+is to think of 
+them as (up to normalization) $e^{\imath \phi}$ where the phase $\phi$ 
+is the inner product between the index of the function $\vec{\jmath}$ and the
+position $\vec{x}$ and the distance metric for the inner product is such
+that the phase increases by $2 \pi$ as we traverse a dimension.
+
+\subsection{k-ary Walsh Transform}
+Now that the k-ary Walsh functions are defined, the k-ary Walsh transform can 
+be stated. 
+To put it simply: a k-ary Walsh coefficient is the inner product of the
+fitness
+function with a k-ary Walsh function, and the k-ary Walsh transform gives the
+k-ary Walsh coefficients in terms of the fitness values.
+\begin{definition}[k-ary Walsh Transform]
+The Walsh coefficients $w$ of a function $f$ are given by
+\begin{equation}
+w_{\vec{\jmath}}=\sum_{\vec{x}}{\barpsijkx f(\vec{x})}.	\label{transform}
+\end{equation}
+\end{definition}
+Notice that we use the complex conjugate of the Walsh function.
+
+\begin{example}
+Use a ternary alphabet and length 2 string again.  
+The Walsh coefficient $w_{(0,1)}$ of
+a function $f$ is given as follows:
+\begin{eqnarray}
+w_{(0,1)} &=& \frac{1}{3} e^0 f((0,0)) 
+	+ \frac{1}{3} e^{-2 \pi \imath /3} f((0,1)) 
+	+ \frac{1}{3} e^{-4 \pi \imath /3} f((0,2)) \nonumber \\
+	&&+ \frac{1}{3} e^0 f((1,0)) 
+	+ \frac{1}{3} e^{-2 \pi \imath /3} f((1,1)) 
+	+ \frac{1}{3} e^{-4 \pi \imath/3} f((1,2)) \nonumber\\
+	&&+ \frac{1}{3} e^0 f((2,0)) 
+	+ \frac{1}{3} e^{-2 \pi \imath /3} f((2,1)) 
+	+ \frac{1}{3} e^{-4 \pi \imath /3} f((2,2)).
+\end{eqnarray}
+\end{example}
+
+\begin{definition}[Inverse k-ary Walsh Transform]
+The inverse transform is given by
+\begin{equation}
+f(x)=\sum_{\vec\jmath}{\Psi^{(k)}_{\vec x}(\vec \jmath) w_j},	\label{inverse}
+\end{equation}
+where the sum is over all possible values of the k-ary string $\vec\jmath$.
+\end{definition}
+Notice that the Walsh function is not conjugated in the inverse transform.
+In practice, the generalized Walsh transform and its inverse would be
+computed by the generalized Fast Walsh Transform algorithm and the inverse
+generalized Fast Walsh Transform listed in Appendix~A.
+
+\begin{theorem}
+The inverse k-ary Walsh transform of a k-ary Walsh transform is the
+identity transformation.
+\end{theorem}
+
+\begin{proof}
+Notice from the definition of the k-ary Walsh function~(\ref{karywalshfunction})
+that $\Psi^{(k)}_{\vec x}(\vec\jmath)=\psijkx$.
+\begin{eqnarray}
+\sum_{\vec{\jmath}}{\Psi_{\vec{x}}^{(k)}(\vec{\jmath}) w_{\vec{\jmath}}}
+&=& \sum_{\vec{\jmath}}{\Psi_{\vec{x}}^{(k)}(\vec{\jmath}) \sum_{\vec{y}}{\overline{\Psi}^{(k)}_{\vec{\jmath}}(\vec{y}) f(\vec{y})}}; \nonumber \\
+&=& \sum_{\vec{\jmath}}{\Psi^{(k)}_{\vec{x}}(\vec{\jmath}) \sum_{\vec{y}}{\overline{\Psi}^{(k)}_{\vec{y}}(\vec{\jmath}) f(\vec{y})}}; \nonumber \\
+&=& \sum_{\vec{y}}{f(\vec{y}) \sum_{\vec{\jmath}} {\Psi^{(k)}_{\vec{x}}(\vec{\jmath}) \overline{\Psi}^{(k)}_{\vec{y}}(\vec{\jmath})}}; \nonumber \\
+&=& \sum_{\vec{y}}{f(\vec{y}) \delta_{x_1y_1}\delta_{x_2 y_2}\ldots\delta_{x_n y_n}};\nonumber \\
+&=& f(\vec{x}).
+\end{eqnarray}
+\end{proof}
+
+The method of using these functions to determine deception will be
+discussed in a later chapter.
+The procedure is a straightforward extension of
+the binary case.  First, the orthogonality of the k-ary Walsh
+functions is used to find k-ary Walsh coefficients for the fitness function
+to be analyzed.
+These coefficients are used to compute the schema averages, and
+the schema averages are used to say something about deception.
+
+\subsection{Some Theorems and Proofs}
+The following are a few theorems about the k-ary Walsh transforms.
+Most of them are simple and add to our intuition of how they work.
+
+\begin{theorem}
+A function is additively separable if $f(\vec{x})=f_1(x_1)+f_2(x_2)+\ldots$.
+A function is additively separable if and only if its k-ary
+Walsh transform is also additively separable.
+\end{theorem}
+
+\begin{proof}
+The proof of this comes immediately from the fact that the transform is
+linear.
+\end{proof}
+
+\begin{example}
+Consider again the ternary alphabet and let $f((x_1,x_2))=3 x_1^2 + x_2$.
+Let $f_1(x_1,x_2)=3 x_1^2$ and $f_2(x_1,x_2)=x_2$ so that 
+$f(x_1,x_2)=f_1(x_1,x_2)+f_2(x_1,x_2)$.  See Tables~3.1 and
+3.2 for the function values and generalized Walsh coefficients.
+
+\begin{table}
+\begin{tabular}{l||c|c|c|c|c|c|c|c|c}
+&	(0,0) &	(0,1) &	(0,2) &	(1,0) &	(1,1) &	(1,2) &	(2,0)&	(2,1)&	(2,2)\\
+\hline
+\hline
+$f_1$ &	0 &	0&	0&	3&	3&	3&	12&	12&	12\\
+$f_2$ &	0&	1&	2&	0&	1&	2&	0&	1&	2\\
+$f$ &	0&	1&	2&	3&	4&	5&	12&	13&	14
+\label{funvalues}
+\end{tabular}
+\caption{Values of $f, f_1,$ and $f_2$ for various values of $x$.}
+\end{table}
+
+\newcommand{\xx}{$\frac{-3+3^{1/2}\imath}{2}$}
+\newcommand{\yy}{$\frac{-15+3^{5/2}\imath}{2}$}
+\begin{table}
+\begin{tabular}{l||c|c|c|c|c|c|c|c|c}
+&	(0,0) &	(0,1) &	(0,2) &	(1,0) &	(1,1) &	(1,2) &	(2,0)&	(2,1)&	(2,2)\\
+\hline
+\hline
+$w_1$ &15& 0& 0& \yy & 0& 0& \yy & 0& 0\\
+$w_2$ &3& \xx & \xx & 0& 0& 0& 0& 0& 0\\
+$w$ & 18& \xx & \xx & \yy &0 & 0 & \yy & 0& 0
+\end{tabular}
+\caption{Generalized Walsh coefficients of the functions in Table~3.1.}
+\label{walshvalues}
+\end{table}
+
+Note that $w_1 + w_2 = w$.  Although this theorem is straightforward, it
+stresses the idea that it is useful to think of the characters in the string
+as being independent variables.  Also, functions which are partially
+additively separable are often used in testing genetic algorithms.
+Partially additively separable functions also arise in real applications.
+For example, in designing a high-performance engine using genetic algorithms,
+the first three characters in the string might code for the type of steel
+used, while the next two characters might code for the fuel mixture.
+Intuitively, these two characteristics are mostly independent; the
+optimal fuel mixture does not depend strongly upon the type of steel used,
+and the best kind of steel to use does not depend strongly upon the fuel
+mixture.  We can express the ideas above mathematically as follows:
+\begin{equation}
+f((x_1,x_2,x_3,x_4,x_5))=f_{123}(x_1,x_2,x_3) + f_{45}(x_4,x_5) +
+	O(\epsilon)
+\end{equation}
+where $\epsilon$ is small compared to one, and all the functions 
+$f, f_{123},$ and $f_{45},$ are of order one.  In this case,
+\begin{equation}
+w_{(j_1,j_2,j_3,j_4,j_5)}=u(j_1,j_2,j_3)+v(j_4,j_5) + O(\epsilon).
+\end{equation}
+To put it more simply: if the fitness function is well-approximated by a
+partially additively separable function, then the k-ary Walsh transform is
+also well-approximated by a partially additively separable function.
+\end{example}
+
+\begin{theorem}
+The average of the function keeping the first character fixed at $0$ and
+varying the other characters is given by the following sum:
+\begin{equation}
+\frac{1}{k^{n/2}}
+(w_{(0,0,0,\ldots)}+w_{(1,0,0,\ldots)}+w_{(2,0,0,\ldots)}+\ldots+
+	w_{(k-1,0,0,\ldots)}).
+\end{equation}
+\end{theorem}
+Note that $w_0$ is the average of the function (times a normalization
+constant).
+
+Notice that the summation over all the variables of the function except
+the first character has been reduced to a
+single summation in transform space.  This is why the k-ary Walsh transform is
+useful.  The average of a function of strings of length $n$ over a schema 
+with $m$ fixed positions can be expressed as a sum over $k^m$ k-ary Walsh
+coefficients.  This idea is used later in the chapter on using generalized
+Walsh functions to calculate schema averages.
+
+\begin{example}
+Let us take $f((x_1,x_2))=3 x_1^2+x_2$ and use a ternary alphabet as in 
+a previous example above.  Then the average of the function setting $x_1=0$
+and letting $x_2$ vary is
+\begin{equation}
+\frac{1}{3}\{f((0,0))+f((0,1))+f((0,2))\}=\frac{1}{3}(w_{(0,0)}+w_{(1,0)}+w_{(2,0)}).
+\end{equation}
+Had $f$ been a function of strings of length 3 instead of 2, the left hand
+side of the above equation would have 9 terms, while the right hand side
+would still have 3 terms.
+\end{example}
+
+\begin{theorem}
+The average of the square of the absolute value of the function is
+equal to the average of the square of the absolute value of the k-ary Walsh
+transform of the function.
+\end{theorem}
+This is analogous to the same relation in
+Fourier transforms.  The usefulness of taking the average of $|f|^2$ will
+become apparent in the chapter on the variance of fitness.
+
+\begin{proof}
+\begin{eqnarray}
+\sum_{\vec x}{\overline{f}(\vec x) f(\vec x)}&=& 
+	\sum_x{\overline{\sum_{\vec p}{\Psi^{(k)}_{\vec x}(\vec p) w_{\vec p}}}
+		\sum_{\vec q}{\Psi^{(k)}_{\vec x}(\vec q) w_{\vec q}}}; \nonumber \\
+	&=& \sum_{\vec p,\vec q}\sum_{\vec x} {\overline{\Psi}^{(k)}_{\vec x}(\vec p)
+		\Psi^{(k)}_{\vec x}(\vec q)
+		\overline{w}_{\vec p} w_{\vec q} }; \nonumber \\
+	&=& \sum_{\vec p,\vec q}\sum_{\vec x} {\overline{\Psi}^{(k)}_{\vec p}{(\vec x)}
+		\Psi^{(k)}_{\vec q}(\vec x)
+		\overline{w}_{\vec p} w_{\vec q} }; \nonumber \\
+	&=& \sum_{\vec p,\vec q} \delta_{p_1q_1}\delta_{p_2q_2}\ldots\delta_{p_nq_n} \overline{w}_{\vec p} w_{\vec q} ;\nonumber\\
+	&=& \sum_{\vec p} \overline{w}_{\vec p} w_{\vec p}.
+		\label{varone}
+\end{eqnarray}
+\end{proof}
+
+\begin{example}
+Let $f((x_1,x_2))= 3x_1^2+x_2$ as before.  The sum of squares of $f$ over
+the entire $x$ space is 564, and so is the sum of the squares of the
+absolute values of the generalized Walsh coefficients.
+\end{example}
+
+Instead of summing the squares of $f$ over the entire $x$ space, let us
+sum it over just the strings with $x_1=0$:
+\begin{eqnarray}
+\sum_{x_2,x_3,\ldots,x_n}{\overline{f(\vec x)} f(x)}&=&
+        \sum_{x_2,x_3,\ldots,x_n}{\overline{\sum_{\vec p}{\Psi^{(k)}_{\vec x}(\vec p) w_{\vec p}}}
+                \sum_{\vec q}{\Psi^{(k)}_{\vec x}(\vec q) w_{\vec q}}}; \nonumber \\
+        &=& \sum_{\vec p,\vec q}\sum_{x_2,x_3,\ldots,x_n} {\overline{\Psi}^{(k)}_{\vec x}(\vec p)
+                \Psi^{(k)}_{\vec x}(\vec q)
+                \overline{w}_{\vec p} w_{\vec q} }; \nonumber \\
+        &=& \sum_{\vec p,\vec q}\sum_{x_2,x_3,\ldots,x_n} {\overline{\Psi}^{(k)}_{\vec p}{(\vec x)}
+                \Psi^{(k)}_{\vec q}(\vec x)
+                \overline{w}_{\vec p} w_{\vec q} }; \nonumber \\
+        &=& \sum_{\vec p,\vec q} \delta_{p_2 q_2} \delta_{p_3 q_3} \ldots
+		\delta_{p_n q_n} \overline{w}_{\vec p} w_{\vec q}; \nonumber \\
+	&=& \sum_{p_1,q_1} \sum_{p_2,p_3,\ldots,p_n}
+		\overline{w}_{\vec p} w_{(q_1,p_2,p_3,p_4,\ldots,p_n)}.
+			\label{vartwo}
+\end{eqnarray}
+Notice that the sum on the left has $k^{n-1}$ terms, while the sum on
+the right has $k^{n+1}$ terms.  So working in the transform space makes for
+more work in this case.  
+
+\section{Functions Over \veckary Strings}
+This section considers functions over \veckary strings,
+strings whose characters are taken from different alphabets.
+The ideas from the previous sections in this chapter are still valid, and the
+definitions need to be modified only slightly.
+
+\subsection{\veckary Walsh Functions}
+Recall that $k_p$ is the size of the alphabet for the $p$-th character in
+a string.  Define the \veckary Walsh functions in the following manner:
+\begin{equation}
+\Psi^{\vec{k}}_{\vec \jmath}(\vec{x})=
+	\frac{1}{\sqrt{k_1 k_2 \ldots k_n}}
+	\prod_{m=1}^n {\exp(\frac{2 \pi \imath}{k_m} x_m j_m)}.
+\end{equation}
+Again, the normalization condition is given by the following:
+\begin{equation}
+\sum_{\vec x}{ {\overline{\Psi}^{(\vec{k})}_{\vec p}(\vec{x})}
+	\Psi^{(\vec{k})}_{\vec q}(\vec{x})}=
+		\delta_{p_1 q_1} \delta_{p_2 q_2} \ldots
+		\delta_{p_n q_n}.
+\end{equation}
+The proof of the normalization works exactly the same way as it did
+before.  The form of the transform (\ref{transform}) and inverse transform 
+(\ref{inverse}) also remain the same.
+
+\section{Functions Over Reals}
+As a computer internally represents real numbers as integers, one might suspect
+that there is some similarity between analyzing genetic
+algorithms whose fitness functions are defined over
+strings whose characters are taken over large alphabets and analyzing
+GAs with fitness functions over reals.
+This suspicion is correct, and with this in mind, real variables will
+be referred to as characters taken from \inftyary alphabets,
+strings that have one real variable followed by one ternary character will
+be referred to as $(\infty,3)$-ary strings, and so on.  
+Despite the similarities, the analysis of functions with real variables
+is not exactly the same as the analysis of functions with characters from
+large alphabets; therefore the $\infty$ symbol should be taken to signify
+a real variable rather than a character from an infinitely large alphabet.
+
+Previously, it was demonstrated that the generalized Walsh transform
+was equivalent to taking the Fourier transform along each dimension.
+All one needs to do is apply this same idea.  If the fitness function
+is a function of two real variables and three discrete variables,
+ then
+simply take the Fourier transform along all five dimensions. 
+
+To avoid normalization constants, this thesis assumes that the real variables
+of the fitness function are always in the unit interval [0,1].
+One can often rescale the real variables in the fitness function so that
+this is true.
+Later, the analysis of functions whose variables are in the range
+$[0,\infty]$ and $[-\infty,\infty]$ will be discussed.
+
+Consider a function over $(\infty,\infty,3,3,3)$-ary strings.
+That is, a function that takes two real variables and three ternary
+characters.
+The generalized Walsh coefficients of this function are given by:
+\begin{equation}
+w_{(j_1,j_2,j_3,j_4,j_5)} = 3^{-3/2}
+\int_0^1{dx_1 \int_0^1{dx_2 \sum_{x_3=0}^2{\sum_{x_4=0}^2{\sum_{x_5=0}^2{f(\vec{x})
+	e^{-2 \pi \imath (x_1 j_1 + x_2 j_2 + x_3 j_3/3 + x_4 j_4/3 + x_5 j_5/3)}}}}}} .
+\end{equation}
+And the inverse transform is given by:
+\begin{equation}
+f(\vec{x})= 3^{-3/2}
+\sum_{j_1=-\infty}^{\infty}{ \sum_{j_2=-\infty}^{\infty}{
+	\sum_{j_3=0}^2{ \sum_{j_4=0}^2{ \sum_{j_5=0}^2 {
+	w_{(j_1,j_2,j_3,j_4,j_5)}
+	e^{2 \pi \imath (x_1 j_1 + x_2 j_2 + x_3 j_3/3 + x_4 j_4/3 + x_5 j_5/3)}}}}}} .
+\end{equation}
+Notice that the sum over $j_1$ and $j_2$ run from $-\infty$ to $\infty$,
+and that there is no normalization factor associated with $x_1$ and $x_2$
+because they range from 0 to 1.
+
+In practice, the sum from $-\infty$ to $\infty$ would be approximated
+by a sum from $-A$ to $A$, where $A$ is some large integer constant.
+This will yield an arbitrarily accurate approximation whenever the
+infinite sum converges.  Although the necessary and sufficient conditions for
+convergence are beyond the scope of this thesis and is a topic for
+future research, piecewise smooth functions can always be approximated
+by this method (Tolstov, 1962), and will be discussed in the next section of
+this chapter.
+
+\section{Reduction to Smaller Alphabets}
+One of the most useful properties about using these generalized Walsh
+transforms is that functions over reals or large alphabets can sometimes
+be well-approximated by functions over small alphabets.  
+Consider a function over a single real variable.  The generalized
+Walsh transform is equivalent to the Fourier transform in this case.
+It is well-known that
+if the first $m$ derivatives of the function are continuous, and the $m+1$-th
+derivative is discontinuous, then for large
+$j$, the magnitude of the Fourier coefficients fall as $j^{-m-2}$
+(Lighthill, 1959).
+Thus, if the function is smooth enough, then one can get good approximations
+to schema averages by dropping the generalized Walsh coefficients with
+high spatial frequencies.  Goldberg~(1990a) theorizes that a high-cardinality
+GA performs a reduction to smaller alphabets; this section gives an
+explanation of when this can occur, what it means in terms of
+generalized Walsh coefficients, and how to take advantage of it when analyzing
+a fitness function.
+
+\begin{example}
+Consider the following test function:
+\begin{definition}[Test Function 1]
+\begin{equation}
+f(x)= \left\{ \begin{array}{ll}
+	x & \mbox{\rm if $x<1/2$} \\
+	0 & \mbox{\rm otherwise}
+	\end{array}
+	\right.
+\end{equation}
+\end{definition}
+This function has no continuous derivatives, and is discontinuous itself.
+Thus, the generalized Walsh coefficients $w_j$ fall as $j^{-1}$.  See Figure~\ref{testfn1}
+ for comparisons of the function with the approximations.
+Notice that since $f$ is real-valued, the generalized Walsh coefficients $w_j$ and
+$w_{-j}$ are complex conjugates; and to get a real-valued approximation,
+if we keep $w_j$ in our sum, we must also keep $w_{-j}$.
+\begin{figure}
+\epsffile{testfn1.ps}
+\caption{Test Function 1.  Jump discontinuity slows convergence.}
+\label{testfn1}
+\end{figure}
+\end{example}
+
+\begin{example}
+Consider the function:
+\begin{definition}[Test Function 2]
+\begin{equation}
+f(x)=x^2(1-x)^2 (\frac{1}{2}-x)^3.  \label{testfunctiontwo}
+\end{equation}
+\end{definition}
+Since $\partial^2 f/\partial x^2$ equals $1/4$ at $x=0$ and $-1/4$ at $x=1$,
+this function has a discontinuous second derivative.  Therefore, the
+generalized Walsh coefficients fall as $j^{-3}$.  See Figure~\ref{testfn2}
+for comparisons of this function with the approximations.  Notice how
+much faster the approximations converge to this function than the previous
+one.
+\begin{figure}
+\epsffile{testfn2.ps}
+\caption{Test Function 2.  Smoother functions converge faster.}
+\label{testfn2}
+\end{figure}
+\end{example}
+If a k-term generalized Walsh approximation is satisfactory, then
+the function can be treated as if it were a function over a k-ary alphabet.  
+Not only
+does this make taking schema averaging simpler, but it also makes
+determining deception much easier.  
+
+\begin{example}
+Consider a
+function $f((x_1,x_2))$ where $x_1$ is a real variable in [0,1] and
+$x_2$ is a character from a ternary alphabet.  Let $w_{(j_1,j_2)}$ be
+the generalized Walsh transform of $f$.  Let $w'_{(j_1,j_2)}$ be the
+(5,2)-ary approximation of $w$.  Then we have the following relations
+between $w'$ and $w$:
+\begin{eqnarray}
+w'_{(0,j_2)} &=& 5^{1/2} w_{(0,j_2)}; \nonumber \\
+w'_{(1,j_2)} &=& 5^{1/2} w_{(1,j_2)}; \nonumber \\
+w'_{(2,j_2)} &=& 5^{1/2} w_{(2,j_2)}; \nonumber \\
+w'_{(3,j_2)} &=& 5^{1/2} w_{(-2,j_2)}; \nonumber \\
+w'_{(4,j_2)} &=& 5^{1/2} w_{(-1,j_2)}.
+\end{eqnarray}
+\end{example}
+The reason this works is that k-ary generalized Walsh functions are
+periodic with period k, and therefore the Walsh coefficients with indices
+$-m$ correspond to Walsh coefficients with indices $k-m$.  The mapping
+used above keeps the $5\times 2$ Walsh coefficients with the lowest spatial
+frequency and fixes the normalization.
+
+Similarly, to reduce a function over (100,2)-ary strings
+to a function over a (7,2)-ary strings, one would use the following
+mapping:
+\begin{eqnarray}
+w'_{(0,j_2)} &=& \frac{7^{1/2}}{100^{1/2}} w_{(0,j_2)}; \nonumber \\
+w'_{(1,j_2)} &=& \frac{7^{1/2}}{100^{1/2}} w_{(1,j_2)}; \nonumber \\
+w'_{(2,j_2)} &=& \frac{7^{1/2}}{100^{1/2}} w_{(2,j_2)}; \nonumber \\
+w'_{(3,j_2)} &=& \frac{7^{1/2}}{100^{1/2}} w_{(3,j_2)}; \nonumber \\
+w'_{(4,j_2)} &=& \frac{7^{1/2}}{100^{1/2}} w_{(97,j_2)}; \nonumber \\
+w'_{(5,j_2)} &=& \frac{7^{1/2}}{100^{1/2}} w_{(98,j_2)}; \nonumber \\
+w'_{(6,j_2)} &=& \frac{7^{1/2}}{100^{1/2}} w_{(99,j_2)}.
+\end{eqnarray}
+Again, one simply takes the $7\times 2$ Walsh coefficients with the lowest spatial
+frequency and fixes the normalization.
+
+Let us do one final example.  Consider again the Test Function 2
+(\ref{testfunctiontwo}) we used earlier.  The Walsh coefficients are
+given by the following:
+\begin{eqnarray}
+w_0&=&0;  \nonumber\\
+w_1&=& -0.000265108 \imath; \nonumber\\
+w_{-1} &=& 0.000265108 \imath; \nonumber\\
+w_2&=& -0.000124861 \imath; \nonumber \\
+w_{-2}&=& 0.000124861 \imath; \nonumber\\
+w_3 &=& -0.0000175818 \imath;  \nonumber\\
+w_{-3} &=& 0.0000175818 \imath; \nonumber\\
+\vdots & & \vdots .
+\end{eqnarray}
+The 7-ary approximation to Test Function 2 (\ref{testfunctiontwo}) would have
+Walsh coefficients $w'$, which are the following:
+\begin{eqnarray}
+w'_0 &=& 7^{1/2} w_0 = 0;\nonumber \\
+w'_1 &=& 7^{1/2} w_1 = -0.000701409 \imath; \nonumber\\
+w'_2 &=& 7^{1/2} w_2 = -0.000330351 \imath; \nonumber\\
+w'_3 &=& 7^{1/2} w_3 = 0.0000465171 \imath; \nonumber \\
+w'_4 &=& 7^{1/2} w_{-3} = -0.0000465171 \imath; \nonumber \\
+w'_5 &=& 7^{1/2} w_{-2} = 0.000330351 \imath; \nonumber\\
+w'_6 &=& 7^{1/2} w_{-1} = 0.00070149 \imath.
+\end{eqnarray}
+
+Since a genetic algorithms population is always finite in practice, it is
+impossible to have individuals distributed over the entire real line from 
+$-\infty$ to $\infty$ uniformly.  In the initial population, one must
+distribute the individuals according to some probability distribution with
+a finite integral.  For every probability distribution $P(x)$ with a finite
+integral, one can take a random variable uniformly distributed between 0 and 1
+ and
+transform it into $P(x)$ with an appropriate change of variable:
+$x=g(r)$.
+For instance, if $r$ is a random variable uniformly distributed between
+0 and 1, then $x=\frac{1}{r}-1$ is a random variable distributed between
+0 and $\infty$, and $y=\tan(\pi(r-1/2))$ is a random variable distributed
+between $-\infty$ and $\infty$.
+
+\begin{example}
+Consider an initial population of \inftyary strings $x$ of length 1 distributed
+with the normalized
+probability distribution $P(x)$.  Let the fitness function be $f(x)$.
+Rather than considering $f(x)$, it is easier to consider $f(g(x'))$, where
+the function $g$ is defined such that $x'$ is distributed evenly between
+0 and 1:
+\begin{eqnarray}
+g(\int_{-\infty}^x P(q) dq)&=& x; \nonumber\\
+\int_{-\infty}^x P(q) dq&=& g^{-1}(x).
+\end{eqnarray}
+Here, $g^{-1}(x)$ refers to the inverse of the function $g$.
+Under the change of variable $x'=g^{-1}(x)$, the initial population of 
+strings $x'$ are uniformly distributed in the interval [0,1].
+\end{example}
+
+This method of transforming an unbounded real variable into a
+real variable uniformly distributed in [0,1] allows us to analyze
+GAs over unbounded real variables without introducing arbitrary
+cutoffs or generalizing nonuniform Walsh schema transforms
+(Bridges \& Goldberg, 1989).
+
+\section{Generalizing the Fast Walsh Transform}
+The Fast Walsh Transform (Goldberg, 1989b) can be generalized in a similar 
+manner to the Walsh transform.
+In the ordinary Fast Walsh Transform, one places the function values $f(x)$ on a
+binary tree; the position of $f(x)$ on the tree corresponds to the
+representation of $x$.  For example, $f((0,1,0,0))$ would be found by
+starting at the root, taking the left branch, then the right, then a
+left, and finally another left.
+
+One descends down and process the tree level by level.  At each level,
+one applies the algorithm described below to each node in that level before
+descending down to the next level.  The algorithm is the following:
+take the left subtree $l$ of the node, add it to the right subtree
+of the node, and call the result $l'$; take the left subtree $l$ of
+the node, subtract the right subtree $r$  and call it $r'$.  Now replace
+the left subtree with $l'$ and the right subtree with $r'$.
+To put it more briefly: $(l,r) \rightarrow (l + r,l - r)$ where the tree-wise
+addition and subtraction means to add like components of $l$ and $r$.
+
+To generalize this to functions over  k-ary strings, form a $k$-ary
+tree and descend level by level.  Instead of applying the rule
+$(l,r) \rightarrow (l+r,l-r)$, we apply the following rule:
+\begin{eqnarray}
+\lefteqn (c_1,c_2,\ldots,c_k) &\rightarrow& \nonumber \\
+& &(c_1+c_2+\ldots+c_k,\nonumber \\
+& &c_1+e^{\frac{2 \pi \imath}{k}} c_2 + e^\frac{4 \pi \imath}{k} c_3 + \ldots 
+	+ e^\frac{2 (k-1) \pi \imath}{k} c_k, \nonumber \\
+& &\cdots).
+\end{eqnarray}
+The basic idea is the same as with the ordinary Fast Walsh Transform, but
+instead of simply adding and subtracting the children at each node, one performs
+a Fourier transform upon the children.
+That is, $c \rightarrow FT[c]$.  Note that if we have a large alphabet,
+it is worthwhile to perform this Fourier transform using a Fast Fourier
+transform.
+
+Note that if we have a $\vec{k}$-ary alphabet, then we can still perform
+the Fast Walsh Transform.  The root node of our tree would have $k_1$
+children; all the nodes at the next lower level would have $k_2$ children,
+etc.  We still go down the tree level by level and apply the Fourier
+transform upon the children of each node.
+
+\begin{example} Figure~\ref{gfwt} shows a generalized Fast Walsh Transform
+for a function over (2,3)-ary strings.
+\begin{figure}
+\epsffile{gfwt.ps}
+\caption{Generalized Fast Walsh Transform for (2,3)-ary strings.}
+\label{gfwt}
+\end{figure}
+\end{example}
+
+Mathematica 2.0 programs that compute k-ary and \veckary Fast Walsh Transforms
+and their inverses are given in Appendix~A.
+
+  This chapter has shown that the Walsh functions and transforms can be
+generalized to non-binary strings.  The next chapter shows that the
+generalized Walsh functions and transforms can be used to compute
+schema averages.
+
+

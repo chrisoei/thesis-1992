@@ -1,0 +1,402 @@
+\typeout{}
+\typeout{Compiling appendix.tex}
+
+\chapter{{Mathematica 2.0\/} Programs}
+
+
+\section{Generalized Walsh Functions Over k-ary Strings}
+\begin{verbatim}
+k is the size of the alphabet
+n is the maximum length of the strings
+j is the index (in integer form) of the generalized Walsh function
+x is the argument (in integer form) of the generalized Walsh function
+
+Psi[k_Integer,n_Integer,j_Integer,x_Integer]:=
+        E^(2 Pi I IntegerDigits[j,k,n].IntegerDigits[x,k,n] / k)/
+        Sqrt[k^n]
+
+\end{verbatim}
+\begin{example}
+From the ternary alphabet and strings of length two example in the
+text above, we evaluate the fourth Walsh function at position two.
+\end{example}
+\linespacing{1.0}
+\begin{verbatim}
+
+In[3]:= Psi[3,2,4,2]
+
+         (-2 I)/3 Pi
+        E
+Out[3]= ------------
+             3
+
+\end{verbatim}
+
+\section{Generalized Walsh Functions Over More Arbitrary Strings}
+\begin{verbatim}
+k is a list of the sizes of the alphabet used in each character
+j is the index (in vector form) of the generalized Walsh function
+x is the argument (in vector form) of the generalized Walsh function
+
+Psi[k_List,j_List,x_List]:=
+        E^(2 Pi I Plus @@ MapThread[#1 #2/#3 &, {j, x, k}])/
+        Sqrt[Times@@k]
+
+\end{verbatim}
+\begin{example}
+Consider the set of strings with length two.  The first character
+is chosen from a binary alphabet, and the second from a ternary alphabet.
+Evaluate the (0,2) Walsh function at position (1,2).
+\end{example}
+\begin{verbatim}
+
+In[6]:= Psi[{2,3},{0,2},{1,2}]
+
+         (2 I)/3 Pi
+        E
+Out[6]= -----------
+          Sqrt[6]
+
+\end{verbatim}
+\section{Generalized Fast Walsh Transform Over k-ary Strings}
+\begin{verbatim}
+k is the size of the alphabet
+l is the list of function values whose length is a power of k
+
+GFWT[k_Integer,l_List]:=
+        Flatten[
+        Nest[ Function[z,Table[E^-(2 Pi I j x/k),{j,0,k-1},{x,0,k-1}].z] /@
+                Partition[#,k]&,l,Round[Log[k,Length[l]]]]]/
+                        Sqrt[k^Round[Log[k,Length[l]]]]
+
+InverseGFWT[k_Integer,l_List]:=
+        Flatten[
+        Nest[ Function[z,Table[E^(2 Pi I j x/k),{j,0,k-1},{x,0,k-1}].z] /@
+                Partition[#,k]&,l,Round[Log[k,Length[l]]]]]/
+                        Sqrt[k^Round[Log[k,Length[l]]]]
+
+\end{verbatim}
+\begin{example}
+Create a list of 9 random numbers, find the transform for a ternary
+alphabet, and then untransform the data to recover the original 9 numbers.
+\end{example}
+\begin{verbatim}
+
+In[3]:= Table[Random[],{9}]
+
+Out[3]= {0.177361, 0.503785, 0.387824, 0.615398, 0.254133, 0.488114, 
+ 
+>    0.00850412, 0.539387, 0.788743}
+
+In[4]:= GFWT[3,%] //N    
+
+Out[4]= {1.25442, -0.226577 + 0.106052 I, -0.226577 - 0.106052 I, 
+ 
+>    -0.0927234 - 0.00606561 I, -0.0247775 - 0.362999 I, 
+ 
+>    -0.0170897 - 0.156521 I, -0.0927234 + 0.00606561 I, 
+ 
+>    -0.0170897 + 0.156521 I, -0.0247775 + 0.362999 I}
+
+In[5]:= InverseGFWT[3,%] //N //Chop
+
+Out[5]= {0.177361, 0.503785, 0.387824, 0.615398, 0.254133, 0.488114, 
+ 
+>    0.00850412, 0.539387, 0.788743}
+
+\end{verbatim}
+\section{Generalized Fast Walsh Transform Over More Arbitrary Strings}
+\begin{verbatim}
+k is a list of the sizes of the alphabets in the string
+l is the list of function values whose length is a the product of 
+     the sizes of the alphabets
+
+GFWT[k_List,l_List]:=
+        Flatten[Fold[
+        Function[z, Table[E^-(2 Pi I i j/#2),{i,0,#2-1},{j,0,#2-1}] . z] /@
+                Partition[#1,#2] &, l, Reverse[k]]]/
+                        Sqrt[Times@@k]
+
+InverseGFWT[k_List,l_List]:=
+        Flatten[Fold[
+        Function[z, Table[E^(2 Pi I i j/#2),{i,0,#2-1},{j,0,#2-1}] . z] /@
+                Partition[#1,#2] &, l, Reverse[k]]]/
+               	        Sqrt[Times@@k]
+
+
+\end{verbatim}
+\begin{example}
+Create a list of 6 random numbers and transform it over strings of
+length 2 whose first character is chosen from a binary alphabet and
+whose second character is chosen from a ternary alphabet.
+\end{example}
+\begin{verbatim}
+
+In[3]:= Table[Random[],{6}]
+
+Out[3]= {0.222531, 0.656238, 0.587434, 0.827656, 0.34676, 0.514834}
+
+In[4]:= GFWT[{2,3},%] //N
+
+Out[4]= {1.28821, -0.000998969 + 0.0350975 I, -0.000998969 - 0.0350975 I, 
+ 
+>    -0.0910589, -0.325032 - 0.0837492 I, -0.325032 + 0.0837492 I}
+
+In[5]:= InverseGFWT[{2,3},%] //N //Chop
+
+Out[5]= {0.222531, 0.656238, 0.587434, 0.827656, 0.34676, 0.514834}
+
+\end{verbatim}
+\section{Converting Schema Averages to Walsh Coefficients}
+\begin{verbatim}
+k is a list containing the sizes of the alphabets
+schema is the schema which we want to evaluate the fitness of.
+	D is the don't-care symbol
+w is the name of the generalized Walsh coefficients
+
+SchemaToWalsh[k_List,schema_List,w_]:=
+        Sum @@
+        Prepend[
+        Delete[MapIndexed[{j[#2[[1]]],0,#1-1}&,k],Position[schema,D]],
+        w[(j[#]&/@Range[Length[k]]).
+                Reverse[FoldList[Times,1,Reverse[Rest[k]]]]]
+        E^(2 Pi I Plus @@
+	        MapIndexed[j[#2[[1]]] schema[[#2[[1]]]]/#1 &,k])
+        /. (j[#] ->0 &/@ Flatten[Position[schema,D]])
+        ] / Sqrt[Times@@k]
+
+
+\end{verbatim}
+\begin{example}
+Consider strings of length 3 whose characters are taken from alphabets
+with cardinality 2, 4, and 2.  Calculate several schema averages in terms 
+of the generalized Walsh coefficients.
+\end{example}
+\begin{verbatim}
+
+In[14]:= SchemaToWalsh[{2,4,2},{D,D,D},w]
+
+         w[0]
+Out[14]= ----
+          4
+
+In[15]:= SchemaToWalsh[{2,4,2},{0,D,D},w]
+
+         w[0] + w[8]
+Out[15]= -----------
+              4
+
+In[16]:= SchemaToWalsh[{2,4,2},{1,D,D},w]
+
+         w[0] - w[8]
+Out[16]= -----------
+              4
+
+In[17]:= SchemaToWalsh[{2,4,2},{0,0,D},w]
+
+         w[0] + w[2] + w[4] + w[6] + w[8] + w[10] + w[12] + w[14]
+Out[17]= --------------------------------------------------------
+                                    4
+
+In[18]:= SchemaToWalsh[{2,4,2},{D,0,D},w]
+
+         w[0] + w[2] + w[4] + w[6]
+Out[18]= -------------------------
+                     4
+
+\end{verbatim}
+\section{Hadamard Transforms}
+\begin{verbatim}
+
+(* tensor[a,b] returns the tensor produce of a and b *)
+tensor[a_,b_]:=With[{s1=Length[a],s2=Length[b]},
+       Table[a[[Ceiling[i/s2],Ceiling[j/s2]]]
+                b[[Mod[i-1,s2]+1,Mod[j-1,s2]+1]],{i,s1 s2},{j,s1 s2}]]
+
+(* returns a Hadamard matrix for a single character *)
+h[k_]:= Table[E^(2 Pi I i j/k),{i,0,k-1},{j,0,k-1}]
+
+(* returns a Hadamard matrix for a set of characters *)
+H[k_List]:= Fold[tensor[#1,#2]&,h[First[k]],h/@Rest[k]]
+
+(* returns the matrix for finding deceptive conditions *)
+M[k_List]:= With[{hmat=H[k]},
+        Table[hmat[[1]]-hmat[[i]],{i,2,Length[hmat]}]]
+
+\end{verbatim}
+\section{Determining Deception Using Hadamard Transforms}
+\begin{verbatim}
+(* returns a list of Walsh coefficients in the partition *)
+(* specified by the schema *)
+WalshList[k_List,schema_List,w_]:=
+        Flatten[
+        Table @@
+        Prepend[
+        Delete[MapIndexed[{j[#2[[1]]],0,#1-1}&,k],Position[schema,D]],
+        w[(j[#]&/@Range[Length[k]]).
+                Reverse[FoldList[Times,1,Reverse[Rest[k]]]]]
+        /. (j[#] ->0 &/@ Flatten[Position[schema,D]])
+        ]]
+
+(* returns the Walsh sums needed for the deceptive conditions *)
+(* F=fixed position, D = don't care *)
+Decep[k_List,schema_List,w_]:=
+        M[k[[#[[1]]]]& /@ Position[schema,F]].WalshList[k,schema,w]
+
+\end{verbatim}
+\begin{example}
+Consider a function over a (3,2,2)-ary alphabet and the competition
+partition (F,D,D).  {\tt Decep[\{3,2,2\},\{F,D,D\},w]} returns a vector whose components
+must all be positive for the function to be deceptive.
+\end{example}
+\begin{verbatim}
+
+In[3]:= Decep[{3,2,2},{F,D,D},w]
+
+               (2 I)/3 Pi               (-2 I)/3 Pi
+Out[3]= {(1 - E          ) w[4] + (1 - E           ) w[8], 
+ 
+           (-2 I)/3 Pi               (2 I)/3 Pi
+>    (1 - E           ) w[4] + (1 - E          ) w[8]}
+
+
+\end{verbatim}
+\begin{example}
+Now we consider the above function over the competition partition (F,F,D).
+\end{example}
+\begin{verbatim}
+
+In[4]:= Decep[{3,2,2},{F,F,D},w]
+
+Out[4]= {2 w[2] + 2 w[6] + 2 w[10], 
+ 
+           (2 I)/3 Pi               (2 I)/3 Pi
+>    (1 - E          ) w[4] + (1 - E          ) w[6] + 
+ 
+            (-2 I)/3 Pi               (-2 I)/3 Pi
+>     (1 - E           ) w[8] + (1 - E           ) w[10], 
+ 
+                    (2 I)/3 Pi               (2 I)/3 Pi
+>    2 w[2] + (1 - E          ) w[4] + (1 + E          ) w[6] + 
+ 
+            (-2 I)/3 Pi               (-2 I)/3 Pi
+>     (1 - E           ) w[8] + (1 + E           ) w[10], 
+ 
+           (-2 I)/3 Pi               (-2 I)/3 Pi
+>    (1 - E           ) w[4] + (1 - E           ) w[6] + 
+ 
+            (2 I)/3 Pi               (2 I)/3 Pi
+>     (1 - E          ) w[8] + (1 - E          ) w[10], 
+ 
+                    (-2 I)/3 Pi               (-2 I)/3 Pi
+>    2 w[2] + (1 - E           ) w[4] + (1 + E           ) w[6] + 
+ 
+            (2 I)/3 Pi               (2 I)/3 Pi
+>     (1 - E          ) w[8] + (1 + E          ) w[10]}
+
+\end{verbatim}
+\section{Determining Deception to Specified Order}
+\begin{verbatim}
+GenDecep[k_List,order_,w_]:=
+        Flatten[
+        Decep[k,#,w]& /@
+        Permutations[Join[Table[F,{order}],
+                Table[D,{Length[k]-order}]]]]
+
+\end{verbatim}
+\begin{example}
+Consider the function used in the previous example.  In order for the
+function to be deceptive at the 1-st order, all the components of
+{\tt GenDecep[\{3,2,2\},1,w]} must be positive.
+\end{example}
+\begin{verbatim}
+
+In[5]:= GenDecep[{3,2,2},1,w]
+
+               (2 I)/3 Pi               (-2 I)/3 Pi
+Out[5]= {(1 - E          ) w[4] + (1 - E           ) w[8], 
+ 
+           (-2 I)/3 Pi               (2 I)/3 Pi
+>    (1 - E           ) w[4] + (1 - E          ) w[8], 2 w[2], 2 w[1]}
+
+\end{verbatim}
+\section{Fully Deceptive Conditions}
+\begin{verbatim}
+FullDecep[k_List,w_]:=
+        Flatten[Table[GenDecep[k,q,w],{q,1,Length[k]-1}]]
+
+
+\end{verbatim}
+\begin{example}
+Consider again a function over strings taken from a (3,2,2)-ary alphabet.
+Then the conditions for full deception are that each of the components
+of the vector returned by {\tt FullDecep[\{3,2,2\},w]} are positive.
+\end{example}
+\begin{verbatim}
+
+In[6]:= FullDecep[{3,2,2},w]
+
+               (2 I)/3 Pi               (-2 I)/3 Pi
+Out[6]= {(1 - E          ) w[4] + (1 - E           ) w[8], 
+ 
+           (-2 I)/3 Pi               (2 I)/3 Pi
+>    (1 - E           ) w[4] + (1 - E          ) w[8], 2 w[2], 2 w[1], 
+ 
+>    2 w[2] + 2 w[6] + 2 w[10], 
+ 
+           (2 I)/3 Pi               (2 I)/3 Pi
+>    (1 - E          ) w[4] + (1 - E          ) w[6] + 
+ 
+            (-2 I)/3 Pi               (-2 I)/3 Pi
+>     (1 - E           ) w[8] + (1 - E           ) w[10], 
+ 
+                    (2 I)/3 Pi               (2 I)/3 Pi
+>    2 w[2] + (1 - E          ) w[4] + (1 + E          ) w[6] + 
+ 
+            (-2 I)/3 Pi               (-2 I)/3 Pi
+>     (1 - E           ) w[8] + (1 + E           ) w[10], 
+ 
+           (-2 I)/3 Pi               (-2 I)/3 Pi
+>    (1 - E           ) w[4] + (1 - E           ) w[6] + 
+ 
+            (2 I)/3 Pi               (2 I)/3 Pi
+>     (1 - E          ) w[8] + (1 - E          ) w[10], 
+ 
+                    (-2 I)/3 Pi               (-2 I)/3 Pi
+>    2 w[2] + (1 - E           ) w[4] + (1 + E           ) w[6] + 
+ 
+            (2 I)/3 Pi               (2 I)/3 Pi
+>     (1 - E          ) w[8] + (1 + E          ) w[10], 
+ 
+                                     (2 I)/3 Pi
+>    2 w[1] + 2 w[5] + 2 w[9], (1 - E          ) w[4] + 
+ 
+            (2 I)/3 Pi               (-2 I)/3 Pi
+>     (1 - E          ) w[5] + (1 - E           ) w[8] + 
+ 
+            (-2 I)/3 Pi                       (2 I)/3 Pi
+>     (1 - E           ) w[9], 2 w[1] + (1 - E          ) w[4] + 
+ 
+            (2 I)/3 Pi               (-2 I)/3 Pi
+>     (1 + E          ) w[5] + (1 - E           ) w[8] + 
+ 
+            (-2 I)/3 Pi              (-2 I)/3 Pi
+>     (1 + E           ) w[9], (1 - E           ) w[4] + 
+ 
+            (-2 I)/3 Pi               (2 I)/3 Pi
+>     (1 - E           ) w[5] + (1 - E          ) w[8] + 
+ 
+            (2 I)/3 Pi                       (-2 I)/3 Pi
+>     (1 - E          ) w[9], 2 w[1] + (1 - E           ) w[4] + 
+ 
+            (-2 I)/3 Pi               (2 I)/3 Pi
+>     (1 + E           ) w[5] + (1 - E          ) w[8] + 
+ 
+            (2 I)/3 Pi
+>     (1 + E          ) w[9], 2 w[1] + 2 w[3], 2 w[2] + 2 w[3], 
+ 
+>    2 w[1] + 2 w[2]}
+
+\end{verbatim}
+
+

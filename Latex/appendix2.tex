@@ -1,0 +1,160 @@
+\typeout{}
+\typeout{Compiling appendix2.tex}
+\chapter{Another Basis for Generalized Transforms}
+
+As in Fourier series, we can use sines and cosines as well as complex
+exponentials as our basis functions.  The disadvantage of using sines
+and cosines as basis functions is that the basic theorems become somewhat
+more complex.  However, the advantage is that all the Walsh coefficients
+of a real function are real in this basis.  We will refer to the generalized
+Walsh functions and transforms using sines as cosines as real generalized
+Walsh functions and transforms.
+
+Since $\cos(x)=\frac{e^{\imath x}+e^{-\imath x}}{2}$ and
+$\sin(x)=\frac{e^{\imath x}-e^{-\imath x}}{2 \imath}$,
+one can convert between the generalized Walsh coefficients used in the previous
+sections to the real generalized Walsh coefficients.
+
+To start, consider a function over strings of length 1.
+There are two cases for the transform itself, one for even k and one for odd k.
+
+{\noindent\bf Odd k}  The real generalized Walsh transform is given by
+\begin{eqnarray}
+a_0 &=& w_0, \nonumber \\
+a_j &=& \frac{w_j + w_{k-j}}{2^{1/2}} \mbox{\ for $j \ne 0$},\nonumber \\
+b_j &=& \frac{\imath}{2^{1/2}} (w_j - w_{k-j}).
+        \label{ajbj1}
+\end{eqnarray}
+The inverse real generalized Walsh transform is given by the following:
+\begin{equation}
+f(x)=\frac{1}{k^{1/2}}(a_0+\sum_{j=1}^{\frac{k-1}{2}}{(a_j 2^{1/2} \cos(2 \pi j
+x/k) +
+         b_j 2^{1/2}\sin(2 \pi j x/k))}).
+        \label{fofx1}
+\end{equation}
+Of course, one can express the $a_j$s and $b_j$s in terms of the inner products
+of the cosines and sines with the function $f$:
+\begin{eqnarray}
+a_0 &=& \frac{1}{k^{1/2}} \sum_{x=0}^{k-1}{f(x)};\nonumber \\
+a_j &=& \frac{2^{1/2}}{k^{1/2}} \sum_{x=0}^{k-1} {\cos(2 \pi j x/k) f(x)}
+        \mbox{\ for $j\ne 0$};\nonumber \\
+b_j &=& \frac{2^{1/2}}{k^{1/2}} \sum_{x=0}^{k-1} {\sin(2 \pi j x/k) f(x)}.
+\end{eqnarray}
+{\bf Even k}
+\begin{eqnarray}
+a_0 &=& w_0; \nonumber \\
+a_{k/2} &=& 2^{-{1/2}} w_{k/2}; \nonumber \\
+a_j &=& \frac{w_j + w_{k-j}}{2^{1/2}} \mbox{\ for $j\ne 0$ and $j\ne k/2$}; \nonumber \\
+b_j &=& \frac{\imath}{2^{1/2}} (w_j - w_{k-j}).
+                \label{ajbj}
+\end{eqnarray}
+\begin{eqnarray}
+f(x)=\frac{1}{k^{1/2}}(a_0+\sum_{j=1}^{\frac{k}{2}-1}{(a_j 2^{1/2}\cos(2 \pi j x
+/k)} &+&
+        b_j 2^{1/2} \sin(2 \pi j x/k))\nonumber\\
+        &+&2^{1/2} \cos(\pi x) a_{k/2}).
+                \label{fofx}
+\end{eqnarray}
+Again, the coefficients can be expressed in terms of the inner product
+of sines and cosines with $f(x)$:
+\begin{eqnarray}
+a_0 &=& \frac{1}{k^{1/2}} \sum_{x=0}^{k-1}{f(x)}; \nonumber \\
+a_j &=& \frac{2^{1/2}}{k^{1/2}} \sum_{x=0}^{k-1} {\cos(2 \pi j x/k) f(x)}
+        \mbox{\ for $j\ne 0$};\nonumber \\
+b_j &=& \frac{2^{1/2}}{k^{1/2}} \sum_{x=0}^{k-1} {\sin(2 \pi j x/k) f(x)}.
+\end{eqnarray}
+
+
+The proof that the inverse real generalized Walsh transform of the
+real generalized Walsh transform of a function is the function itself
+comes from substituting the expressions
+for $a_j$ and $b_j$~(\ref{ajbj1},\ref{ajbj}) into the expressions for
+$f(x)$~(\ref{fofx1},\ref{fofx})
+and verifying that it
+indeed is the inverse generalized Walsh transform (\ref{inverse}).
+
+There are two ways of generalizing the above method to $n$ dimensions.
+The first is simply to take the Fourier transform along each dimension
+as we did before, but to use sines and cosines as we have done above.
+The problem with using this method is mainly notational complexity,
+although the idea is just as simple
+as the generalized Walsh transforms we discussed before;  all we are
+doing is taking the Fourier transform in an $n$-dimensional space, using
+sines and cosines.
+As this first method of generalizing the sine and cosine transform becomes
+cumbersome for long strings, it will not be pursued any further in this
+thesis.
+
+The second method of generalizing the Walsh
+transform using sines and cosines works as follows:
+\begin{eqnarray}
+a_{\vec{0}} &=& \prod_m{k_m^{-1/2}} \sum_{\vec{x}} {f(\vec{x})}; \nonumber\\
+a_{\vec{\jmath}} &=& 2^{1/2} \prod_m{k_m^{-1/2}} \sum_{x_1,x_2,\ldots,x_n}
+        {\cos(2 \pi (j_1 x_1/k_1+j_2 x_2/k_2+\ldots j_n x_n/k_n)
+        f(\vec{x})}
+        \mbox{\ for $j\ne 0$};\nonumber \\
+b_{\vec{\jmath}} &=& 2^{1/2} \prod_m{k^{-1/2}} \sum_{x_1,x_2,\ldots,x_n}
+        {\cos(2 \pi (j_1 x_1/k_1+j_2 x_2/k_2+\ldots j_n x_n/k_n)
+        f(\vec{x})}.
+\end{eqnarray}
+\begin{eqnarray}
+f(\vec{x}) &=& \prod_m{k_m^{-1/2}} \sum_{\vec{\jmath}}
+{}\{
+a_{\vec 0}+
+a_{\vec{\jmath}} 2^{1/2} \cos(2 \pi (j_1 x_1/k_1+j_2 x_2/k_2+\ldots j_n x_n/k_n)
+)
+        \nonumber\\
+&& +
+b_{\vec{\jmath}} 2^{1/2} \sin(2 \pi (j_1 x_1/k_1+j_2 x_2/k_2+\ldots j_n x_n/k_n)
+)
+\}.
+\end{eqnarray}
+This method has the disadvantage that the Walsh functions in $n$
+dimensions is not just the product of Walsh functions in one dimension.
+Explicitly, they are the following:
+\begin{definition}[Real \veckary Walsh Functions]
+\begin{eqnarray}
+\Omega^{(\vec k)}_0(\vec x) &=& \prod_m{k_m^{-1/2}};\nonumber\\
+\Omega^{(\vec k)}_{\vec{\jmath}}(\vec x) &=& 2^{1/2}\prod_m{k_m^{-1/2}} \cos(2 \
+pi (j_1 x_1/k_1 +
+        j_2 x_2/k_2 + \ldots j_n x_n /k_n)) \mbox{\ for $j\ne 0$};\nonumber\\
+\Lambda^{(\vec k)}_{\vec{\jmath}}(\vec x) &=& 2^{1/2}\prod_m{k_m^{-1/2}} \sin(2
+\pi (j_1 x_1/k_1 +
+        j_2 x_2/k_2 + \ldots j_n x_n /k_n)).
+\end{eqnarray}
+\end{definition}
+
+
+This transform also has the useful property that function averages over schema
+with $m$ fixed positions become sums over $n-m$ positions in the transformed
+space.
+\begin{example}
+Consider again a function $f$ over strings of
+length 2 whose characters are taken from a ternary alphabet.  Some schemas
+averages in terms of the transform coefficients are
+\begin{eqnarray}
+f(**) &=& \frac{1}{3} a_{(0,0)}; \nonumber \\
+f(*0) &=& \frac{1}{3} (a_{(0,0)} + a_{(0,1)}); \nonumber\\
+f(*1) &=& \frac{1}{3} (a_{(0,0)} -\frac{1}{2} a_{(0,1)} +\frac{3^{1/2}}{2} b_{(0
+,1)}); \nonumber\\
+f(*2) &=& \frac{1}{3} (a_{(0,0)} -\frac{1}{2} a_{(0,1)} -\frac{3^{1/2}}{2} b_{(0
+,1)}).
+\end{eqnarray}
+\end{example}
+
+
+\begin{theorem}
+Consider a schema has $m$ fixed characters $p_i$ at positions $j_i$.
+Then the average of $f$ over that schema is
+\begin{eqnarray}
+\prod_q{k_q^{-1/2}}
+\sum_{l_1} \sum_{l_2} \ldots \sum_{l_m} & &
+\cos(2 \pi (l_1 p_1/k_{j_1}+l_2 p_2/k_{j_2} +\ldots+l_m p_m/k_{j_m}))\nonumber\\
+&& a_{(0,0,\ldots,0,l_1,0,\ldots,0,l_2,0,\ldots,0,l_m,0,\ldots)}\nonumber\\
+&+&
+\sin(2 \pi (l_1 p_1/k_{j_1}+l_2 p_2/k_{j_2} +\ldots+l_m p_m/k_{j_m}))\nonumber\\
+&& b_{(0,0,\ldots,0,l_1,0,\ldots,0,l_2,0,\ldots,0,l_m,0,\ldots)}.
+\end{eqnarray}
+\end{theorem}
+
+

@@ -1,0 +1,15 @@
+% refs.sty 3-Nov-88
+
+\newdimen\bibindent
+\bibindent=1.5em
+\newenvironment{thereferences}
+ { \section*{References}
+   \begin{list}{ }{
+  \addtolength{\leftmargin}{\bibindent}
+  \addtolength{\itemindent}{-\bibindent}
+    \addtolength{\listparindent}{\itemindent}
+    \addtolength{\leftmargin}{-\labelwidth}
+  } }{ \end{list} }
+
+
+

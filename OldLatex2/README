@@ -1,0 +1,19 @@
+#!/bin/csh
+
+echo Extracting archive of OldLatex2 created on Wed May  6 00:24:41 GMT-0500 1992
+
+set sm=`cat x??|sum`
+if ("$sm" == "16424 105") then
+	echo checksum ok
+	cat x??|uncompress|tar xvf -
+else
+	echo "new checksum = $sm"
+	echo "old checksum = 16424 105"
+	echo "searching for corrupted files:"
+set sm = `sum xaa`
+if ("16424 105" == "$sm") then
+echo xaa is ok
+else
+echo xaa is CORRUPTED
+endif
+endif

@@ -1,0 +1,58 @@
+\typeout{}
+\typeout{Compiling chapter1.tex}
+\chapter{Introduction}
+\hyphenation{Bledsoe Kauffman}
+\section{Preview}
+Walsh functions, introduced by the mathematician J.~L.~Walsh in 1923, 
+recently have become popular tools in fields such as 
+telecommunications engineering, radar systems, image recognition and
+processing, speech processing, coding systems, and spectroscopy
+(Beauchamp, 1975).
+Bethke~(1981) introduced the Walsh-schema transform, a method of using 
+Walsh functions for
+computing schema averages.  Since then, the Walsh-schema transform has become
+a cornerstone in the theory of genetic algorithms (GAs).
+
+Most of the theory of genetic algorithms applies to GAs over binary strings,
+real numbers, or permutations.  
+Attempts to generalize this theory borrowed some notions from set theory
+(Radcliffe, 1991; Vose \& Liepins, 1991).
+Recently, Mason~(1991) extended the concept of
+partition coefficients (Bethke, 1981) from the theory of binary-coded
+genetic algorithms to GAs over non-binary strings.
+
+This thesis generalizes Walsh functions to non-binary strings and
+reworks some of the existing theory of GAs to incorporate these new
+functions.  Topics that will be covered and extended include Bethke's Walsh
+schema transform, real-coded GAs (Bledsoe, 1961; Goldberg, 1990a;
+Wright, 1991), detecting static deception and \linebreak Hadamard transforms 
+(Homaifar \& Qi, 1990; Homaifar, Qi, \& Fost, 1991), and the variance of 
+fitness (Goldberg, Deb, \& Clark, 1991; Goldberg \& Rudnick, 1991;
+Rudnick \& Goldberg, 1991).
+
+\section{Notation}
+Throughout this thesis, $n$ will refer to the length of the strings in
+the domain of the fitness function.
+$k$ will refer to the cardinality of the alphabet, or if each
+character of a string is taken from a different alphabet, $k_1$ refers
+to the alphabet for the first character, $k_2$ for the second, and so on.
+A k-ary alphabet is an alphabet with k characters.
+The characters in a k-ary alphabet will be represented by the
+integers 0 through $k-1$.
+A k-ary string is a string all of whose characters are taken from 
+the same k-ary alphabet.
+A string that belongs to a \veckary alphabet is a string whose first
+character belongs to a $k_1$-ary alphabet, whose second character 
+belongs to a $k_2$-ary alphabet, etc; such strings will be referred to 
+as \veckary strings.
+A string will be represented by a vector whose components are the
+integer representations of the characters in the string.
+For example, the hexidecimal (16-ary) string ``3F2'' would be denoted by (3,15,2).
+k-ary Walsh functions are the generalization of Walsh functions to k-ary
+alphabets, and \veckary Walsh functions are the generalization to
+strings that belong to \veckary alphabets.  Both of these generalizations
+of Walsh functions, as well as generalizations of the Walsh functions to
+strings with characters which are real numbers, will be referred to as 
+generalized Walsh functions.  The corresponding transforms will be
+referred to as k-ary and \veckary Walsh transforms.
+

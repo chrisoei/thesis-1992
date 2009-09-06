@@ -1,0 +1,122 @@
+\typeout{}
+\typeout{Compiling chapter4.tex}
+
+\chapter{Using Generalized Walsh Coefficients to Determine Schema Averages}
+Determining schema averages is at the heart for the reason of using these
+transform methods.  
+In Chapter~3, this thesis stated that a sum of $f$ over $m$ 
+characters
+of a string of length $n$ turned into a sum of generalized Walsh
+coefficients over $n-m$ characters.  For this reason, the average of a function
+over a schema with $m$ positions fixed turns into a sum over $m$ characters
+of the Walsh coefficients.
+
+\begin{example} Consider strings of length 3 taken from a (2,4,3)-ary alphabet.
+Some examples of schema averages are as follows:
+\begin{eqnarray}
+f((*,*,*)) &=& \frac{1}{4} w_{(0,0,0)}; \nonumber \\
+f((0,*,*)) &=& \frac{1}{4} (w_{(0,0,0)}+w_{(1,0,0)}); \nonumber \\
+f((1,*,*)) &=& \frac{1}{4} (w_{(0,0,0)}-w_{(1,0,0)}); \nonumber \\
+f((*,0,*)) &=& \frac{1}{4} (w_{(0,0,0)}+
+				w_{(0,0,1)}+
+				w_{(1,0,0)}+
+				w_{(1,0,1)}); \nonumber \\
+f((*,1,*)) &=& \frac{1}{4} (w_{(0,0,0)}+ \imath w_{(0,0,1)}-
+				w_{(1,0,0)}-\imath w_{(1,0,1)}); \nonumber \\
+f((*,2,*)) &=& \frac{1}{4} (w_{(0,0,0)}- w_{(0,0,1)}+
+				w_{(1,0,0)}- w_{(1,0,1)}); \nonumber \\
+f((*,3,*)) &=& \frac{1}{4} (w_{(0,0,0)}- \imath w_{(0,0,1)}-
+				w_{(1,0,0)}+\imath w_{(1,0,1)}); \nonumber \\
+f((*,*,0)) &=& \frac{1}{4} (w_{(0,0,0)}+w_{(0,0,1)}+w_{(0,0,2)}); \nonumber\\
+f((*,*,1)) &=& \frac{1}{4} (w_{(0,0,0)}+e^{2\pi\imath/3} w_{(0,0,1)}
+		+ e^{4\pi\imath/3} w_{(0,0,2)}); \nonumber\\
+f((0,0,*)) &=& \frac{1}{4} (w_{(0,0,0)}+ w_{(0,1,0)}+
+				w_{(0,2,0)}+ w_{(0,3,0)}
+	\nonumber\\
+	&&+
+				w_{(1,0,0)}+ w_{(1,1,0)}+
+				w_{(1,2,0)}+ w_{(1,3,0)}); \nonumber \\
+f((0,1,1)) &=& \frac{1}{4} (
+w_{(0,0,0)} + e^{2\pi\imath/3} w_{(0,0,1)}+ e^{4\pi\imath/3} w_{(0,0,2)} 
+	\nonumber\\
+ && + \imath w_{(0,1,0)} + \imath e^{2\pi\imath/3} 
+	w_{(0,1,1)}+\imath e^{4\pi\imath/3} w_{(0,1,2)} \nonumber\\
+&& -w_{(0,2,0)}-e^{2\pi\imath/3}w_{(0,2,1)}-e^{4\pi\imath/3}w_{(0,2,2)}
+	\nonumber\\
+&&-\imath w_{(0,3,0)} -\imath e^{2\pi\imath/3} w_{(0,3,1)} 
+	-\imath e^{4\pi\imath/3} w_{(0,3,2)} \nonumber\\
+&&+ w_{(1,0,0)} + e^{2\pi\imath/3} w_{(1,0,1)}+ e^{4\pi\imath/3} w_{(1,0,2)}
+	\nonumber\\
+&& + \imath w_{(1,1,0)} + \imath e^{2\pi\imath/3} w_{(1,1,1)}+
+	\imath e^{4\pi\imath/3} w_{(1,1,2)} \nonumber\\
+&& -w_{(1,2,0)}-e^{2\pi\imath/3}w_{(1,2,1)}-e^{4\pi\imath/3}w_{(1,2,2)}
+		\nonumber\\
+&& -\imath w_{(1,3,0)} -\imath e^{2\pi\imath/3} w_{(1,3,1)}
+	-\imath e^{4\pi\imath/3} w_{(1,3,2)}
+).
+\end{eqnarray}
+\end{example}
+Note that the difference between the sums for $f((0,*,*))$ and $f((1,*,*))$
+is that the Walsh coefficients are subtracted rather than added.  In
+general, when we have a fixed character $p$ in the j-th position in the schema,
+the corresponding sum in the transform has a phase of $e^{2 \pi p/k_j}$.
+
+It is straightforward to make a general theorem from these observations.
+\begin{theorem}
+Consider a schema with $m$ fixed characters $p_i$ at positions $j_i$.
+Then the average of $f$ over that schema is
+\begin{eqnarray}
+\prod_q{k_q^{-1/2}}
+\sum_{l_1} \sum_{l_2} \ldots \sum_{l_m} & &
+e^{2 \pi \imath (l_1 p_1/k_{j_1}+l_2 p_2/k_{j_2} 
+	+\ldots+l_m p_m/k_{j_m})}\nonumber\\
+&& w_{(0,0,\ldots,0,l_1,0,\ldots,0,l_2,0,\ldots,0,l_m,0,\ldots)}.
+			\label{schematowalsh}
+\end{eqnarray}
+\end{theorem}
+
+\begin{proof}
+Recall that when we write $f$ in terms of its generalized Walsh coefficients, the
+result has $n$ sums, where $n$ is the length of the strings.  There is
+a sum for each of the $n$ characters in the string of the argument.  Now,
+when we take the average of $f$ over a schema which has a $*$ in the j-th
+position, only the terms that have no phase change as we traverse the j-th
+dimension survive; this means that only the generalized Walsh coefficients with a $0$
+in the j-th position survive in the final result.
+\end{proof}
+
+We can also define schemata in the space of real numbers,
+and take schema averages using generalized Walsh coefficients as before.  
+These schemata are analogous to the slices used in Goldberg~(1990a) rather
+than the schemata for real parameters defined in Wright~(1991), and are
+a natural extension of schemata in finite alphabets.
+
+\begin{example}
+Consider a function $f$ over $(\infty,\infty,3,3,3)$-ary strings.
+Let
+(0.67,*,*,*,1) refer to the set of strings whose first variable $x_1$
+equals 0.67 and last variable $x_5$ equals 1.  Then the average of the
+function $f$ over that schema is
+\begin{equation}
+f((0.67,*,*,*,1))=3^{-3/2}\sum_{j_1=-\infty}^{\infty} {\sum_{j_5=0}^2{
+        w_{(j_1,0,0,0,j_5)} e^{2 \pi \imath (0.67 j_1 + 1 j_5/3)}
+}}.
+\end{equation}
+\end{example}
+To get more familiar with using these generalized Walsh coefficients on
+real variables, let us do some more schema averages:
+\begin{eqnarray}
+f((*,*,*,*,*)) &=& 3^{-3/2} w_{(0,0,0,0,0)}; \nonumber\\
+f((*,*,*,*,2)) &=& 3^{-3/2} (w_{(0,0,0,0,0)} +
+        e^{2 \pi \imath/3} w_{(0,0,0,0,1)} +
+        e^{4 \pi \imath/3} w_{(0,0,0,0,2)}); \nonumber\\
+f((0,*,*,*,*)) &=& 3^{-3/2} \sum_{j_1=-\infty}^{\infty}{w_{(j_1,0,0,0,0)}}.
+\end{eqnarray}
+
+This chapter has generalized the notion of schema used in analyzing
+genetic algorithms of binary strings and showed how to use generalized
+Walsh functions and transforms to compute schema averages.  A method of
+comparing schema averages to determine deception is given in the
+next chapter.
+
+

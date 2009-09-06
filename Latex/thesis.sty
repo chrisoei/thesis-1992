@@ -1,0 +1,303 @@
+%%
+%%	This TeX style file was written by Fred Richards,
+%%	Copyright 1990.
+%%
+%%	You are free to use, distribute and even modify
+%%	this file as long as you never try to charge any
+%%	money for it, or profit from it in any way except
+%%	in the time you save in getting your thesis through
+%%	the Margin Nazis of the grad college of your choice.
+%%
+
+%
+% This LaTeX style file will generate a thesis title page
+% that satisfies the University of Illinois graduate college.
+% It is designed to work with the report document, so use
+%
+%	\documentstyle[thesis]{report}
+%
+% The following variables must be defined for the cover page:
+%
+%	\title{}		(3 lines long, all caps)
+%	\author{}		(all caps)
+%	\abauthor{}		(for the abstract, not all caps)
+%	\prevdegrees{}		(the degrees and institutions, 2 lines)
+%	\degree{}		(i.e. Doctor in Philosophy)
+%	\shortdegree{}		(i.e. Ph. D.)
+%	\department{}
+%	\thesisdate{}		(just the year)
+%
+% Also defined here is the ``abstractpage'' environment,
+% which will be start on page number (iii) if you decide
+% you want an abstract.  To use it just say
+%	\begin{abstractpage}
+%	...text...
+%	\end{abstractpage}
+% after you generate the title page with \maketitle.
+%
+% That should be all you need to know to use this.
+% The main text will be double-spaced and the abstract,
+% footnote, biography, and bibliography will be single spaced.
+%
+
+
+%%
+%%	Format parameters
+%%	You can fine-tune these if you wish
+%%
+
+%% If you change the default line spacing you should do so in the
+%% main text file.  There are commands below (like the abstract page
+%% environment) which assume this default and return the \baselinestretch
+%% variable to 2.0 when finishing.
+
+\def\linespacing#1{\gdef\@linespacing{#1}}
+
+\linespacing{1.5}
+
+\oddsidemargin 0.5in
+\evensidemargin 0.0in
+\topmargin 0.25in
+
+\textwidth 6.00in
+\textheight 8in
+
+\headheight 0.00in
+\headsep \headheight		% no headers
+
+\renewcommand{\baselinestretch}{\@linespacing}
+
+%%for two-sided output need to reset default to variable text height
+
+\raggedbottom
+
+%%	End of format parameters	%%
+
+
+%%	Title Page Variables	%%
+
+% \title and \author already exist
+
+\def\prevdegrees#1{\gdef\@prevdegrees{#1}}
+
+\def\degree#1{\gdef\@degree{#1}}
+\def\shortdegree#1{\gdef\@shortdegree{#1}}
+
+\def\department#1{\gdef\@department{#1}}
+
+\def\thesisdate#1{\gdef\@thesisdate{#1}}
+
+
+%% Now set up the title page	%%
+
+\def\maketitle{
+	\thispagestyle{empty}
+	\renewcommand{\baselinestretch}{1.0}
+	\@normalsize
+	\newpage
+
+	\begin{center}
+
+		% The center of the title should be 2.25in from the top of
+		% the title page.  I put it in a box and position the box.
+		% remember that the page starts at \topmargin (1in default).
+
+		\vspace*{0.83in}
+		\parbox{5.25in}{\centering \large{\@title}} \\
+
+		% ``BY'' should be 4in from the top of the page.  The \vspace
+		% is relative to the last offset (center of the title's box).
+		% so if your title is not 3 lines long the next \vspace will
+		% have to be adjusted.
+
+		\vspace{1.12in}
+		BY \\
+		\vspace{0.2in}
+		{\large \@author} \\
+		\vspace{0.2in}
+		\@prevdegrees \\
+
+		% ``THESIS'' should be 4.25in from the bottom of the page.
+		% I can only promise that this will work if you have
+		% 2 previous degrees listed and your title is on 3 lines.
+		%
+		% You may have to adjust this next \vspace
+
+		\vspace{1.28in}
+		THESIS \\
+		\vspace{0.2in}
+		Submitted in partial fulfillment of the requirements \\
+		for the degree of \@degree\ in \@department \\
+		in the Graduate College of the \\
+		\uiuc, \@thesisdate \\
+		\vspace{1.28in}
+		Urbana, Illinois
+
+	\end{center}
+
+	\pagenumbering{roman}	% use \setupthecounters to reset to arabic
+	\setcounter{page}{2}
+	\renewcommand{\baselinestretch}{\@linespacing}
+	\@normalsize
+	\newpage
+}
+
+
+\def\uiuc{University of Illinois at Urbana-Champaign}
+
+
+
+%%	Now define the parameters for an abstract page	%%
+
+\def\abauthor#1{\gdef\@abauthor{#1}}
+\def\advisor#1{\gdef\@advisor{#1}}
+
+\def\abstractpage{
+	\renewcommand{\baselinestretch}{1.0}
+	\@normalsize
+	\newpage
+	\vspace*{0.5in}
+	\begin{center}
+		{\sc \@title} \\
+		\vspace{.2in}
+		\@abauthor, \@shortdegree \\
+		Department of \@department \\
+		\uiuc, \@thesisdate \\
+		\@advisor, Advisor \\
+		\vspace{0.3in}
+	\end{center}
+	\renewcommand{\baselinestretch}{\@linespacing}
+	\@normalsize
+}
+\def\endabstractpage{
+	\newpage
+	\@normalsize
+}
+
+
+%%	Now set up Acknowledgments and Preface pages	%%
+
+\def\acknowledgments{
+	\newpage
+	\chapter*{Acknowledgments}
+}
+\def\endacknowledgments{\newpage}
+
+\def\preface{
+	\newpage
+	\chapter*{Preface}
+}
+\def\endpreface{\newpage}
+
+
+
+
+%%	Use this at the start of the thesis to make sure	%%
+%%	the page number and the number style are correct	%%
+
+\def\setupthecounters{\pagebreak\pagenumbering{arabic}\setcounter{page}{1}}
+
+%%	I want to make my figure captions single spaced		%%
+%%	and indented from the normal text.  I do this by	%%
+%%	defining a new caption command.				%%
+
+\def\figcap#1{
+	\centering
+	\parbox{5.25in}{\renewcommand{\baselinestretch}{1.0}
+			\@normalsize
+			\caption{{#1}} }
+}
+
+
+
+%
+%	Re-define the \thebibliography command (copied from report.sty)
+%	with the only change being ``\chapter*{Bibliography...}''
+%	being replaced by ``\chapter*{References...}''
+%
+
+\def\thebibliography#1{\chapter*{References\@mkboth
+    {BIBLIOGRAPHY}{BIBLIOGRAPHY}}\list
+    {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+    \usecounter{enumi}}
+    \def\newblock{\hskip .11em plus .33em minus .07em}
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax}
+\let\endthebibliography=\endlist
+
+
+%
+% There are two changes here.
+% First, I modify the rep10.sty definition of the chapter command so
+% that the first call generates a ``\@chapapp'' in the table of contents
+% (this will be either the word ``Chapter'' or ``Appendix'').
+% See \l@block{} below.
+% Second, change the form of the chapter entries in the table of contents
+% so that dots are included between the chapter name and page number.
+%
+
+
+\def\@chapter[#1]#2{
+    \ifnum \c@secnumdepth >\m@ne
+	\refstepcounter{chapter}
+	\ifnum \value{chapter}=1
+	    \addcontentsline{toc}{block}{\@chapapp}
+	\fi
+	\addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}
+    \else
+	\addcontentsline{toc}{chapter}{#1}
+    \fi
+    \chaptermark{#1}
+    \addtocontents{lof}{\protect\addvspace{12pt}}
+    \addtocontents{lot}{\protect\addvspace{12pt}}
+    \if@twocolumn
+    	\@topnewpage[\@makechapterhead{#2}] 
+    \else
+	\@makechapterhead{#2}
+	\@afterheading
+    \fi} 
+
+
+% Redefine the Chapter table-of-contents command so that it generates
+% dotted lines
+
+\def\l@chapter#1#2{\addpenalty{-\@highpenalty}
+    \vskip 1.0em plus 1pt \@tempdima 1.5em
+    \begingroup
+	\parindent \z@ \rightskip \@pnumwidth
+	\parfillskip -\@pnumwidth
+	\leavevmode \advance\leftskip \@tempdima \hskip -\leftskip
+	{\bf #1}\nobreak
+	\leaders\hbox{$\m@th \mkern \@dotsep mu.\mkern \@dotsep mu$}\hfill \nobreak \hbox to\@pnumwidth{\hss \bf #2}\par
+	\penalty\@highpenalty
+    \endgroup}
+
+
+% Here I copied the \l@part{} command (which enters ``part'' names in
+% the table of contents) to generate a word (argument #1) in the table
+% and the label ``Page'' where the page number should go.
+% This is needed by the redefined \@chapter{} command above.
+
+\def\l@block#1#2{\addpenalty{-\@highpenalty}
+    \addvspace{2.25em plus 1pt} \begingroup
+    \@tempdima 3em \parindent \z@ \rightskip \@pnumwidth \parfillskip
+    -\@pnumwidth 
+    {\large \bf \leavevmode #1 \hfil Page}
+    \par \nobreak \global\@nobreaktrue
+    \everypar{\global\@nobreakfalse\everypar{}}
+\endgroup}
+
+
+% My signature
+
+\typeout{}
+\typeout{Thesis style file for the University of Illinois}
+\typeout{		created by Fred Richards, 1990}
+\typeout{}
+
+
+
+
+
+

@@ -1,0 +1,152 @@
+%
+%   Written by Tomas Rokicki of Radical Eye Software, 29 Mar 1989.
+%
+%   Include an ecapsulated postscript graphic.
+%   Works by finding the bounding box comment,
+%   calculating the correct scale values, creating
+%   a vbox of the appropriate size, and printing.
+%
+%   To use, simply 
+%   \input epsf
+%   \espffile{filename.ps}
+%
+%   A `vbox' of the appropriate size for the bounding box
+%   will be built.  By default, the graphic will have its
+%   `natural' width.
+%
+%   If you wish to set the graphic at a different width,
+%   simply set the dimension `\epsfxsize' to something else,
+%   such as `\hsize', and all will be well.
+%
+%   PostScript literal specials are also supported:
+%
+%   \special{"newstroke 0 0 moveto 100 100 rlineto stroke}
+%
+%   for instance will draw a line with all default parameters.
+%   If you wish to define macros to use in such literal specials,
+%   do the following:
+%
+%   \special{! % here we can define macros for PostScript
+%      /lto { newstroke 0 0 moveto rlineto stroke } def }
+%
+%   And then you can use the macro anywhere in the file.
+%
+\newread\epsffilein
+\newif\ifepsffileok
+\newif\ifepsfbbfound
+\newdimen\epsfxsize
+\epsfxsize=0pt
+\newdimen\epsfysize
+\newdimen\epsftsize
+\newdimen\epsfrsize
+\newdimen\pspoints
+\pspoints=1truein
+\divide\pspoints by 72
+%
+%   These macros depend on hscale/vscale being in hundredths.  We make
+%   sure of that here.
+%
+\special{! /@scaleunit 100 def }
+%
+\def\epsffile#1{%
+%
+%   The first thing we need to do is to open the
+%   PostScript file, if possible.
+%
+\openin\epsffilein=#1
+\ifeof\epsffilein\message{I couldn't open #1}\else
+%
+%   Here we initialize the values to defaults.
+%
+   \global\def\epsfllx{72}
+   \global\def\epsflly{72}
+   \global\def\epsfurx{540}
+   \global\def\epsfury{540}
+%
+%   Okay, we got it.  Now we scan lines until we find one
+%   that doesn't start with a percentage sign.  We're
+%   looking for the bounding box comment.
+%
+   {\epsffileoktrue\epsfbbfoundfalse
+    \catcode`\%=11 \catcode`\\=11
+    \catcode`\{=11 \catcode`\}=11
+    \catcode`\$=11 \catcode`\^=11
+    \catcode`\&=11 \catcode`\#=11
+    \catcode`\~=11 \catcode`\_=11
+    \loop
+       \read\epsffilein to \epsffileline
+       \ifeof\epsffilein\epsffileokfalse\else
+%
+%   Now we check to make sure the first character is a % sign,
+%   and that the rest are `%BoundingBox:' if necessary.
+%
+          \expandafter\epsfaux\epsffileline . .\\
+       \fi
+   \ifepsffileok\repeat
+   \ifepsfbbfound\else\message{No bounding box comment in #1}\fi}%
+   \immediate\closein\epsffilein
+%
+%   Now we have to calculate the scale and offset values to use.  We scale
+%   the graph to be \epsfxsize wide.
+%
+   \epsfrsize=\epsfury\pspoints
+   \advance\epsfrsize by-\epsflly\pspoints
+   \epsftsize=\epsfurx\pspoints
+   \advance\epsftsize by-\epsfllx\pspoints
+%
+%   If `epsfxsize' is 0, we default to the normal size of the picture.
+%
+   \ifnum\epsfxsize=0\epsfxsize=\epsftsize\fi
+%
+%   We have a particularly sticky problem here.  TeX can't divide well!
+%   We scale the above sizes down until we are at a reasonable size.
+%   Really, we are only interested in the ratio, so we scale down until
+%   we have numbers that still have a reasonable amount of precision.
+%   (One part in 5000; for a 6.5'' figure, that's 0.1pt.)
+%
+   \loop
+      \ifnum\epsftsize>5000
+         \divide\epsftsize by 2
+         \divide\epsfrsize by 2
+   \repeat
+%
+%   Now we can divide and then multiply.  Since pictsize is probably at
+%   least 3in or 14,000,000, we can do this with some reasonable precision.
+%
+   \epsfysize=\epsfxsize
+   \divide\epsfysize by \epsftsize
+   \multiply\epsfysize by \epsfrsize
+   \immediate\message{Height is \the\epsfysize}
+   \epsftsize=10\epsfxsize
+   \divide\epsftsize by \pspoints
+   \def\rwi{\number\epsftsize}
+   \vbox to\epsfysize{\vfill\hbox to\epsfxsize{%
+      \epsfsendspecial{#1}{\epsfllx}{\epsflly}{\epsfurx}{\epsfury}{\rwi}%
+      \hfil}}%
+\fi}
+%
+%   We need these for comparison purposes.
+%
+{\catcode`\%=11 \global\let\epsfpar=\par
+\global\let\epsfpercent=%\global\def\epsfbblit{%BoundingBox:}}%
+%
+%   This is our function that checks for `%BoundingBox:' and grabs the
+%   values if they are found.
+%
+\long\def\epsfaux#1#2 #3\\{\ifx#1\epsfpercent
+   \def\testit{#2}\ifx\testit\epsfbblit
+      \epsfsize #3 . . . .\\
+      \global\epsffileokfalse
+      \global\epsfbbfoundtrue
+   \fi\else\ifx#1\epsfpar\else\global\epsffileokfalse\fi\fi}%
+%
+%   Here we actually send the special.
+%
+\def\epsfsendspecial#1#2#3#4#5#6{\special{psfile=#1
+    llx=#2 lly=#3 urx=#4 ury=#5 rwi=#6}}%
+%
+%   Here we grab the values and stuff them in the appropriate definitions.
+%
+\def\epsfsize#1 #2 #3 #4 #5\\{\global\def\epsfllx{#1}\global\def\epsflly{#2}%
+   \global\def\epsfurx{#3}\global\def\epsfury{#4}}
+

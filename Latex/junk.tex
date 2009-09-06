@@ -1,0 +1,232 @@
+
+One of the main topics of research in genetic algorithms is the study of
+when the algorithm converges to the best answer.  Even if we know what
+the best answer is, it is not easy to see whether or not the algorithm
+converges to it.  One approach is to look at the average of the function
+over similar strings; if the best string looks a lot like strings that
+are generally bad, then the function is in some sense deceptive.
+Unfortunately, taking these averages is computationally intensive.
+
+In the past, Walsh functions have been used as a convenient way of
+determining such quantities as schema averages and variances for binary
+fitness functions.  In many cases, however, the fitness function takes a
+nonbinary alphabet or even several real numbers.  For example, in real life,
+DNA uses a base-4 alphabet.  In some engineering applications, a fitness
+function may be defined over real numbers, such as the size of a particular
+mechanical component in a design optimization problem.  We cannot analyze
+these fitness functions by transforming them into fitness functions over
+binary strings; doing so can introduce deception (such as Hamming cliffs)
+due to the singularities in the transformation.  What we can do, however,
+it to extend the Walsh function approach to cover these more general
+cases as well.
+
+\section{Roulette wheel selection}
+The schema theorem \cite{bible} by itself does not insure that the number of
+individuals with that schema will grow, even initially, in a population
+with finite size \cite{variance}.  With roulette wheel selection and an
+infinite population, the number of copies an individual has in the target
+population is proportional to its fitness.  With a finite population, however,
+sampling noise inherent in the roulette wheel selection may increase or
+decrease this number.  When we are calculating the growth rate of a
+particular schema, it is important to keep in mind the statistical variance
+in the growth rate as well.
+
+
+One way to think of this process is to consider a single individual's
+growth rate, then generalize the result to schemas.  Let $P(n,i)$ be
+the probability that individual $i$ receives $n$ copies in the next
+generation.  Then,
+\begin{equation}
+P(n,i)=p_i^n (1-p_i)^{N-n} {N \choose n}
+\end{equation}
+where $N$ is the population size and $p_i$ is the fitness of individual $i$
+divided by the sum of the fitnesses of the entire population:
+\begin{eqnarray}
+p_i&=& \frac{1}{C} f_i \nonumber\\
+C&=& \sum_{j=1}^N{f_j}
+\end{eqnarray}
+Now let $Q(f,s)$ be the probability distribution of fitness for schema $s$.
+Consider a single individual taken at random from the set of individuals
+covered by the schema $s$.
+\begin{equation}
+P(n,s)= \int_{-\infty}^{\infty}{
+        df\, Q(f,s) (f/C)^n (1-f/C)^{N-n} {N \choose n}
+}
+\end{equation}
+The variance in $n$ of $P(n,s)$ depends on the variance of $Q(f,s)$ about
+its mean and the variance of $(f/C)^n (1-f/C)^{N-n}$ about its mean
+at $f=n C/N= n \overline{f}$.
+$n=f_s/\overline{f}$
+\begin{eqnarray}
+P(n,s) &\approx& \int_{-\infty}^{\infty}{
+           df\, e^{-(f-f_s)^2/2\sigma_s^2} e^{-n(f-N^2\overline{f})^2/n}}
+        \nonumber\\
+        &\approx& e^{-(f_s-n \overline{f})^2/(n/N^2 +2 \sigma_s^2)}
+\end{eqnarray}
+When we take all the individuals in the population that are covered by
+schema $s$ and ask how many individuals in the target population are covered
+by schema $s$
+\begin{equation}
+\sigma^2=\frac{1}{N_s}(\frac{n}{N^2}+2 \sigma_s^2)
+\end{equation}
+
+If $\sigma \gg N_s |1 - f_s/\overline{f}|$, then the noise dominates the
+reproduction of the schema, and the growth rate of the schema is unpredictable.
+Conversely, if $\sigma \ll N_s |1 - f_s /\overline{f}|$, then the noise is
+negligible and the schema theorem applies.
+
+\section{Tournament selection}
+In tournament selection, this problem manifests itself in another way.
+Consider two schemas $s_1$ and $s_2$ with fitness probabilities
+$Q(f,s_1)$ and $Q(f,s_2)$.  Let us choose one individual from each schema
+and see which wins.  If the fitness probabilities $Q(f,s_1)$ and
+$Q(f,s_2)$ have no variance, then the individual that comes from the
+schema with the greater average fitness will always win.  Otherwise, the
+probability that the individual from $s_2$ wins is
+\begin{equation}
+\int_{-\infty}^{\infty} {df_1
+\int_{f_1}^{\infty} {df_2\,
+Q(f_1,s_1) Q(f_2,s_2)}}
+\end{equation}
+Let us approximate the distribution of fitness as gaussians as before.
+Without loss of generality, let us make the fitness of $s_1$ be zero
+and the fitness of $s_2$ be $\Delta$.
+\begin{eqnarray}
+\int_{-\infty}^{\infty} {df_1
+\int_{f_1}^{\infty} {df_2\,
+Q(f_1,s_1) Q(f_2,s_2)}} &\approx&
+\int_{-\infty}^{\infty} {df_1
+\int_{f_1}^{\infty} {df_2\,
+\frac{e^{-f_1^2/2\sigma_1^2}}{(2 \pi \sigma_1^2)^{1/2}}
+\frac{e^{-(f_2-\Delta)^2/2\sigma_2^2}}{(2 \pi \sigma_2^2)^{1/2}}
+}} \nonumber\\
+&=& \int_{-\infty}^{\Delta}{dz\, \frac{e^{-z^2/2(\sigma_1^2+\sigma_2^2)}}{
+        (2 \pi(\sigma_1^2+\sigma_2^2))^{1/2}}} \nonumber\\
+&=& \int_{-\infty}^{\Delta/(\sigma_1^2+\sigma_2^2)^{1/2}}{dz\,
+        \frac{e^{-z^2/2}}{(2\pi)^{1/2}}} \nonumber\\
+&=& \frac{
+        1+\mbox{erf}
+        ({\frac{\Delta}{(2(\sigma_1^2+\sigma_2^2))^{1/2}})}}{2}
+\end{eqnarray}
+So we see that with tournament selection, the variance of fitness actually
+reduces the expected selection pressure instead of merely adding noise to it.
+In both tournament selection and roulette wheel selection, the basic rule
+of thumb is that in order to see whether noise the schema theorem dominates,
+we compare the difference in fitness to the variance in fitness.  If this
+signal-to-noise ratio is high, then the schema theorem is valid; otherwise
+the noise dominates.
+
+
+
+
+More importantly, this
+new basis gives us a way of understanding some more results about schema
+averages over nonbinary strings.
+
+Consider a function over strings of length 2 whose characters are taken
+from a ternary alphabet.
+
+\begin{eqnarray}
+aa_{(0,0)} &=& w_{(0,0)} \nonumber \\
+aa_{(0,m)} &=& w_{(0,m)} + w_{(0,k-m)} \nonumber \\
+aa_{(l,0)} &=& w_{(l,0)} + w_{(k-l,0)} \nonumber \\
+ab_{(0,m)} &=& w_{(0,m)} - w_{(0,k-m)} \nonumber \\
+ba_{(l,0)} &=& w_{(l,0)} + w_{(k-l,0)} \nonumber \\
+aa_{(l,m)} &=& w_(l,m) + w_(l,k-m) + w_(k-l,m) + w_(k-l,k-m) \nonumber \\
+ab_{(l,m)} &=& w_(l,m) - w_(l,k-m) + w_(k-l,m) - w_(k-l,k-m) \nonumber \\
+ba_{(l,m)} &=& w_(l,m) + w_(l,k-m) - w_(k-l,m) - w_(k-l,k-m) \nonumber \\
+bb_{(l,m)} &=& w_(l,m) - w_(l,k-m) - w_(k-l,m) + w_(k-l,k-m) \nonumber \\
+\end{eqnarray}
+\begin{eqnarray}
+f((x_1,x_2))  &=& \frac{1}{3}( \sum_{l=0}^{\frac{k-1}{2}} {
+        \sum_{m=0}^{\frac{k-1}{2}} {}}\nonumber \\
+&+& aa_{(l,m)} \cos(2 \pi \imath l x_1/k) \cos(2 \pi \imath l x_2/k)\nonumber \\
+&+& ab_{(l,m)} \cos(2 \pi \imath l x_1/k) \sin(2 \pi \imath l x_2/k)\nonumber\\
+&+& ba_{(l,m)} \sin(2 \pi \imath l x_1/k) \cos(2 \pi \imath l x_2/k)\nonumber\\
+&+& bb_{(l,m)} \sin(2 \pi \imath l x_1/k) \sin(2 \pi \imath l x_2/k)
+)
+\end{eqnarray}
+
+Clearly, this first way of generalizing the sine and cosine transform becomes
+cumbersome for long strings, and so we will not pursue it any further.
+
+
+\begin{definition}{k-ary Inner Product}
+\begin{equation}
+\kdirac{\vec x}{\vec y}=\frac{1}{k}(x_1 y_1+x_2 y_2+\ldots+x_n y_n)
+\end{equation}
+\end{definition}
+\begin{definition}{\veckary Inner Product}
+\begin{equation}
+\veckdirac{\vec x}{\vec y}=x_1 y_1/k_1+x_2 y_2/k_2+\ldots+x_n y_n/k_n
+\end{equation}
+\end{definition}
+
+
+
+But if the function $f$ is well-approximated by
+a partially additively separable function, say $f(x)=f_1((x_1,\ldots,
+x_{n/2})) + f_2((x_{n/2+1},\ldots,x_n))$ and $w=u+v$ with the same breakup,
+then the computation in transform space only involves approximately $k^{n/2}$
+terms.
+\begin{eqnarray}
+\sum_{i_1,j_1} \sum_{i_2,i_3,\ldots,i_n}
+        \overline{w_i} w_{j_1,i_2,i_3,i_4,\ldots,i_n} &=&
+\sum_{i_1,j_1} \sum_{i_2,i_3,\ldots,i_n}
+(\overline{u_{(i_1,i_2,\ldots,i_{n/2})}}
++ \overline{v_{(i_{n/2+1},\ldots,i_{n})}}) \nonumber\\
+ &&
+(u_{(j_1,i_2,i_3,\ldots,i_{n/2})} + v_{(i_{n/2},\ldots,i_n)}) \nonumber \\
+&=&
+\sum_{i_1,j_1,i_2,i_3,\ldots,i_{n/2}} {
+\overline{u_{(i_1,i_2,\ldots,i_{n/2})}}
+u_{(j_1,i_2,i_3,\ldots,i_{n/2})} } \nonumber \\
+&&+
+\sum_{i_{n/2+1},\ldots,i_n} {
+\overline{v_{(i_{n/2+1},\ldots,i_{n})}}
+v_{(i_{n/2+1},\ldots,i_n)}
+} \nonumber\\
+&&+
+\sum_{i_1,i_2,\ldots,i_{n/2}} {
+\overline{u_{(i_1,i_2,\ldots,i_{n/2})}} }
+\sum_{i_{n/2},\ldots,i_n} {
+v_{(i_{n/2+1},\ldots,i_n)} } \nonumber\\
+&&
++\sum_{i_{n/2+1},\ldots,i_n} {
+\overline{v_{(i_{n/2+1},\ldots,i_{n})}} }
+\sum_{j_1,i_2,i_3,\ldots,i_{n/2}}
+u_{(j_1,i_2,i_3,\ldots,i_{n/2})}
+\end{eqnarray}
+Of course, in this case the computation using a sum over $f^2$ also has
+about $k^{n/2}$ terms, so we have not gained anything by using the transform.
+
+
+
+
+In a previous chapter, we had some examples of computing $\dirac{f^2}$, and
+now we will generalize those examples to state that:
+\begin{equation}
+\mbox{var}(f(s))=\frac{1}{k_1 k_2 \ldots k_n}\sum_{(i,j) \epsilon J^2_{\ominus}(
+h)-J^2(h)}{
+        \overline{w_i} w_j \Psi_{j \ominus i}(h)}
+\end{equation}
+where $J(h)$ is the similarity subset $(J:\{0,1,*\}^n \rightarrow \{0,1\}^n)$
+created by replacing *s by 0s and fixed positions by *s:
+\begin{equation}
+J_i(h)=\left\{\begin{array}{ll}
+        0,&\mbox{if $h_i$=*;}\\
+        **,&\mbox{otherwise}
+        \end{array}\right.
+\end{equation}
+$J^2(h)=J(h) \times J(h)$, $J^2_{\ominus}=\{(i,j):j\ominus i \epsilon J(h)
+\}$, and $j \ominus i=(j_1-i_1 \mbox{\ mod\ } k_1,j_2-i_2 \mbox{\ mod\ } k_2,\ld
+ots,
+        j_n-i_n \mbox{\ mod\ } k_n)$.
+The details of the derivation for the binary strings are given in {variance}.
+
+Although in general, computing the variance of a schema with Walsh functions
+requires more operations than computing the variance using the fitness
+function directly, in certain cases there are shortcuts that make it more
+efficient.  For example, for relatively short strings,
+
+
