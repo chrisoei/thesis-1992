@@ -1,114 +1,234 @@
-This is CTeX, NeXT Version 3.1a (format=lplain 91.6.10)  6 MAY 1992 00:04
+This is pdfTeX, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2007.12.19)  5 SEP 2009 21:19
 **thesis
-(thesis.tex
-LaTeX Version 2.09 <7 Dec 1989>
-(/usr/lib/tex/inputs/report.sty
-Document Style `report' <13 Nov 89>.
-(/usr/lib/tex/inputs/rep12.sty)
-\descriptionmargin=\dimen99
-\c@part=\count78
-\c@chapter=\count79
-\c@section=\count80
-\c@subsection=\count81
-\c@subsubsection=\count82
-\c@paragraph=\count83
-\c@subparagraph=\count84
-\c@figure=\count85
-\c@table=\count86
- (/usr/lib/tex/inputs/titlepage.sty))
-(thesis.sty
+(./thesis.tex{/usr/share/texmf/pdftex/config/pdftex.cfg}
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, n
+ohyphenation, loaded.
+(/usr/share/texmf/tex/latex/base/latex209.def
+File: latex209.def 1998/05/13 v0.52 Standard LaTeX file
+
+
+          Entering LaTeX 2.09 COMPATIBILITY MODE
+ *************************************************************
+    !!WARNING!!    !!WARNING!!    !!WARNING!!    !!WARNING!!   
+ 
+ This mode attempts to provide an emulation of the LaTeX 2.09
+ author environment so that OLD documents can be successfully
+ processed. It should NOT be used for NEW documents!
+ 
+ New documents should use Standard LaTeX conventions and start
+ with the \documentclass command.
+ 
+ Compatibility mode is UNLIKELY TO WORK with LaTeX 2.09 style
+ files that change any internal macros, especially not with
+ those that change the FONT SELECTION or OUTPUT ROUTINES.
+ 
+ Therefore such style files MUST BE UPDATED to use
+          Current Standard LaTeX: LaTeX2e.
+ If you suspect that you may be using such a style file, which
+ is probably very, very old by now, then you should attempt to
+ get it updated by sending a copy of this error message to the
+ author of that file.
+ *************************************************************
+
+\footheight=\dimen102
+\@maxsep=\dimen103
+\@dblmaxsep=\dimen104
+\@cla=\count79
+\@clb=\count80
+\mscount=\count81
+(/usr/share/texmf/tex/latex/base/tracefnt.sty
+Package: tracefnt 1997/05/29 v3.0j Standard LaTeX package (font tracing)
+\tracingfonts=\count82
+LaTeX Info: Redefining \selectfont on input line 96.
+)
+\symbold=\mathgroup4
+\symsans=\mathgroup5
+\symtypewriter=\mathgroup6
+\symitalic=\mathgroup7
+\symsmallcaps=\mathgroup8
+\symslanted=\mathgroup9
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 288.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 289.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 290.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 296.
+LaTeX Info: Redefining \em on input line 306.
+
+(/usr/share/texmf/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 42.
+)
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 370.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 372.
+LaTeX Font Info:    Redeclaring math delimiter \bracevert on input line 374.
+
+(/usr/share/texmf/tex/latex/config/latex209.cfg
+File: latex209.cfg 2001/06/05 v1.0 teTeX customized LaTeX 2.09 compatibility mo
+de setup
+)
+(/usr/share/texmf/tex/latex/tools/rawfonts.sty
+Package: rawfonts 1994/05/08 Low-level LaTeX 2.09 font compatibility
+
+(/usr/share/texmf/tex/latex/tools/somedefs.sty
+Package: somedefs 1994/06/01 Toolkit for optional definitions
+)
+LaTeX Font Info:    Try loading font information for U+lasy on input line 44.
+
+(/usr/share/texmf/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)))
+(/usr/share/texmf/tex/latex/base/report.cls
+Document Class: report 2001/04/21 v1.4e Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size12.clo
+File: size12.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count83
+\c@chapter=\count84
+\c@section=\count85
+\c@subsection=\count86
+\c@subsubsection=\count87
+\c@paragraph=\count88
+\c@subparagraph=\count89
+\c@figure=\count90
+\c@table=\count91
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+Compatibility mode: definition of \rm ignored.
+Compatibility mode: definition of \sf ignored.
+Compatibility mode: definition of \tt ignored.
+Compatibility mode: definition of \bf ignored.
+Compatibility mode: definition of \it ignored.
+Compatibility mode: definition of \sl ignored.
+Compatibility mode: definition of \sc ignored.
+LaTeX Info: Redefining \cal on input line 581.
+LaTeX Info: Redefining \mit on input line 582.
+\bibindent=\dimen105
+) (./thesis.sty
 
 Thesis style file for the University of Illinois
  created by Fred Richards, 1990
 
-) (refs.sty
-\bibindent=\dimen100
-) (epsf.tex
-\epsffilein=\read0
-\epsfxsize=\dimen101
-\epsfysize=\dimen102
-\epsftsize=\dimen103
-\epsfrsize=\dimen104
-\pspoints=\dimen105
-) (thesis.aux (abstract.aux) (chapter1.aux)
-(chapter2.aux) (chapter3.aux) (chapter4.aux) (chapter5.aux) (chapter6.aux)
-(chapter7.aux) (appendix.aux) (appendix2.aux) (references.aux)) [2
+) (./refs.sty
+\bibindent=\dimen106
+) (./epsf.tex
+\epsffilein=\read1
+\epsfxsize=\dimen107
+\epsfysize=\dimen108
+\epsftsize=\dimen109
+\epsfrsize=\dimen110
+\pspoints=\dimen111
+) (./thesis.aux (./abstract.aux) (./chapter1.aux)
+(./chapter2.aux) (./chapter3.aux) (./chapter4.aux) (./chapter5.aux)
+(./chapter6.aux) (./chapter7.aux) (./appendix.aux) (./appendix2.aux)
+(./references.aux))
+\openout1 = `thesis.aux'.
 
-] (misc.tex
-\c@theorem=\count87
-\c@definition=\count88
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 85.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 85.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 85.
+ [2
+
+
+Non-PDF special ignored!{/usr/share/texmf/dvips/config/pdftex.map}] (./misc.tex
+\c@theorem=\count92
+\c@definition=\count93
 )
-(abstract.tex
+\openout2 = `abstract.aux'.
+
+ (./abstract.tex
 
 Compiling abstract.tex
 [3
 
-]) (thesis.toc [4
+]) (./thesis.toc [4
 
 
 ] [5])
 \tf@toc=\write3
- [6] (chapter1.tex
+\openout3 = `thesis.toc'.
+
+ [6]
+\openout2 = `chapter1.aux'.
+
+ (./chapter1.tex
 
 Compiling chapter1.tex
 [1
 
 
-] [2]) [3] (chapter2.tex
+] [2]) [3]
+\openout2 = `chapter2.aux'.
+
+ (./chapter2.tex
 
 Compiling chapter2.tex
 
 Overfull \hbox (1.08661pt too wide) in paragraph at lines 17--32
-[]\twlrm The smooth-ness ar-gu-ments were also used by Wein-berger, who started
+[]/cmr12/The smooth-ness ar-gu-ments were also used by Wein-berger, who started
  with Eigen's
-
-\hbox(8.33331+2.33331)x433.62, glue set - 1.0
-.\hbox(0.0+0.0)x17.62482
-.\twlrm T
-.\twlrm h
-.\twlrm e
-.\glue 3.91663 plus 1.95831 minus 1.30554
-.etc.
+ []
 
 [4
 
 
 
-] [5] [6]) [7] (chapter3.tex
+] [5] [6]) [7]
+\openout2 = `chapter3.aux'.
+
+ (./chapter3.tex
 
 Compiling chapter3.tex
 [8
 
 
 
-] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
+] [9] [10] [11] [12] [13] [14] [15] [16]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 314.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 320.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 320.
+ [17] [18]
 Overfull \hbox (3.15852pt too wide) detected at line 376
-[]\twlmi w[] \twlrm = 3[] [][] []\twlmi :
+/cmmi12/w[] /cmr12/= 3[] [][] []/cmmi12/:
+ []
 
-\hbox(19.15561+13.93338)x433.62
-.\hbox(0.0+0.0)x0.0
-.\twlmi w
-.\hbox(6.0+2.0)x54.57649, shifted 1.86668
-..\egtrm (
-..\egtmi j
-..\hbox(3.86665+0.0)x4.16661, shifted 1.1111
-...\sixrm 1
-..\egtmi ;
-..\egtmi j
-..etc.
-.\glue(\thickmuskip) 3.33328 plus 3.33328
-.\twlrm =
-.etc.
+[19] Height is 311.20096pt [20] Height is 311.20096pt [21
+Non-PDF special ignored!] [22
+Non-PDF special ignored!] [23] [24] [25] [26] [27] Height is 506.93687pt)
+[28] [29
+Non-PDF special ignored!]
+\openout2 = `chapter4.aux'.
 
-[19] Height is 311.20096pt [20] Height is 311.20096pt [21] [22] [23] [24]
-[25] [26] [27] Height is 506.93687pt) [28] [29] (chapter4.tex
+ (./chapter4.tex
 
 Compiling chapter4.tex
 [30
 
 
 
-] [31] [32]) [33] (chapter5.tex
+] [31] [32]) [33]
+\openout2 = `chapter5.aux'.
+
+ (./chapter5.tex
 
 Compiling chapter5.tex
 [34
@@ -117,234 +237,836 @@ Compiling chapter5.tex
 
 ] [35] [36]
 Overfull \hbox (23.67456pt too wide) in paragraph at lines 64--65
-[] []\twlit Define the gen-er-al-ized Hadamard
-
-\hbox(9.0+3.0)x433.62, glue set - 1.0
-.\hbox(0.0+0.0)x17.62482
-.\glue -17.62482
-.\hbox(9.0+3.0)x292.10968
-..\glue 0.0
-..\glue 0.0
-..\glue -5.87494
-..\hbox(9.0+3.0)x292.10968
-...\glue 5.87494
-...\twlbf D
-...\twlbf e
-...\twlbf ^^L (ligature fi)
-...\twlbf n
-...etc.
-..\glue 5.87494
-.\penalty 0
-.\twlit D
-.etc.
+[]/cmti12/Define the gen-er-al-ized Hadamard
+ []
 
 [37] [38]
 Overfull \hbox (2.34444pt too wide) in paragraph at lines 156--159
-\twlbf Example  \twlrm Let us re-peat the above cal-cu-la-tions for the com-pe-
-ti-tion par-ti-tion $(\twlmi F; D; F\twlrm )$: 
-
-\hbox(9.0+3.0)x433.62, glue set - 1.0
-.\twlbf E
-.\twlbf x
-.\twlbf a
-.\twlbf m
-.\twlbf p
-.etc.
+/cmbx12/Example  /cmr12/Let us re-peat the above cal-cu-la-tions for the com-pe
+-ti-tion par-ti-tion $(/cmmi12/F; D; F/cmr12/)$: 
+ []
 
 [39] [40]
 Overfull \hbox (8.6827pt too wide) in paragraph at lines 204--208
-\twlrm which are the de-cep-tive con-di-tions cor-re-spond-ing to the com-pe-ti
--tion par-ti-tion $(\twlmi F; D; F\twlrm )$.
-
-\hbox(9.0+3.0)x433.62, glue set - 1.0
-.\twlrm w
-.\twlrm h
-.\twlrm i
-.\twlrm c
-.\kern-0.32639
-.etc.
+/cmr12/which are the de-cep-tive con-di-tions cor-re-spond-ing to the com-pe-ti
+-tion par-ti-tion $(/cmmi12/F; D; F/cmr12/)$.
+ []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 204--208
 
+ []
 
-\hbox(0.0+0.0)x433.62
-.\glue(\rightskip) 0.0
+) [41]
+\openout2 = `chapter6.aux'.
 
-) [41] (chapter6.tex
+ (./chapter6.tex
 
 Compiling chapter6.tex
 [42
 
 
 
-] [43] [44] [45] [46]) [47] (chapter7.tex
+] [43] [44] [45] [46]) [47]
+\openout2 = `chapter7.aux'.
+
+ (./chapter7.tex
 
 Compiling chapter7.tex
 [48
 
 
 
-] [49]) [50] (appendix.tex
+] [49]) [50]
+\openout2 = `appendix.aux'.
+
+ (./appendix.tex
 
 Compiling appendix.tex
 
-Overfull \hbox (27.20847pt too wide) in paragraph at lines 7--7
-[]\svtnbf Generalized Walsh Func-tions Over k-ary Strings 
-
-\hbox(12.0+3.36)x433.62, glue set - 1.0
-.\hbox(11.856+0.0)x50.3517
-..\glue 0.0
-..\svtnbf A
-..\svtnbf .
-..\svtnbf 1
-..\glue 19.87189
-.\svtnbf G
-.\svtnbf e
-.\svtnbf n
-.\svtnbf e
-.etc.
+Overfull \hbox (16.71379pt too wide) in paragraph at lines 7--7
+[]/cmbx12@17.28pt/Generalized Walsh Func-tions Over k-ary Strings 
+ []
 
 [51
 
 
 
-] [52]
+] [52] [53]
 Overfull \hbox (29.50523pt too wide) in paragraph at lines 78--78
-[]        \twltt Nest[ Function[z,Table[E^-(2 Pi I j x/k),{j,0,k-1},{x,0,k-1}].
-z] /@[] 
+[]        /cmtt12/Nest[ Function[z,Table[E^-(2 Pi I j x/k),{j,0,k-1},{x,0,k-1}]
+.z] /@[] 
+ []
 
-\hbox(8.33331+2.66666)x433.62
-.\hbox(0.0+0.0)x0.0
-.\penalty 10000
-.\glue 6.175
-.\penalty 10000
-.\glue 6.175
-.etc.
 
-[53]
 Overfull \hbox (23.33023pt too wide) in paragraph at lines 78--78
-[]        \twltt Nest[ Function[z,Table[E^(2 Pi I j x/k),{j,0,k-1},{x,0,k-1}].z
-] /@[] 
-
-\hbox(8.33331+2.66666)x433.62
-.\hbox(0.0+0.0)x0.0
-.\penalty 10000
-.\glue 6.175
-.\penalty 10000
-.\glue 6.175
-.etc.
-
-[54]
-Overfull \hbox (8.46465pt too wide) in paragraph at lines 108--108
-[]\svtnbf Generalized Fast Walsh Trans-form Over More
-
-\hbox(12.0+0.0)x433.62, glue set - 1.0
-.\hbox(11.856+0.0)x50.3517
-..\glue 0.0
-..\svtnbf A
-..\svtnbf .
-..\svtnbf 4
-..\glue 19.87189
-.\svtnbf G
-.\svtnbf e
-.\svtnbf n
-.\svtnbf e
-.etc.
-
-[55]
-Overfull \hbox (29.50523pt too wide) in paragraph at lines 127--127
-[]        \twltt Function[z, Table[E^-(2 Pi I i j/#2),{i,0,#2-1},{j,0,#2-1}] . 
+[]        /cmtt12/Nest[ Function[z,Table[E^(2 Pi I j x/k),{j,0,k-1},{x,0,k-1}].
 z] /@[] 
+ []
 
-\hbox(8.33331+2.66666)x433.62
-.\hbox(0.0+0.0)x0.0
-.\penalty 10000
-.\glue 6.175
-.\penalty 10000
-.\glue 6.175
-.etc.
+[54] [55]
+Overfull \hbox (29.50523pt too wide) in paragraph at lines 127--127
+[]        /cmtt12/Function[z, Table[E^-(2 Pi I i j/#2),{i,0,#2-1},{j,0,#2-1}] .
+ z] /@[] 
+ []
 
 
 Overfull \hbox (23.33023pt too wide) in paragraph at lines 127--127
-[]        \twltt Function[z, Table[E^(2 Pi I i j/#2),{i,0,#2-1},{j,0,#2-1}] . z
-] /@[] 
-
-\hbox(8.33331+2.66666)x433.62
-.\hbox(0.0+0.0)x0.0
-.\penalty 10000
-.\glue 6.175
-.\penalty 10000
-.\glue 6.175
-.etc.
+[]        /cmtt12/Function[z, Table[E^(2 Pi I i j/#2),{i,0,#2-1},{j,0,#2-1}] . 
+z] /@[] 
+ []
 
 [56]
 Overfull \hbox (17.15523pt too wide) in paragraph at lines 149--149
-[]\twltt Out[4]= {1.28821, -0.000998969 + 0.0350975 I, -0.000998969 - 0.0350975
- I,[] 
-
-\hbox(8.33331+1.66667)x433.62
-.\hbox(0.0+0.0)x0.0
-.\twltt O
-.\twltt u
-.\twltt t
-.\twltt [
-.etc.
+[]/cmtt12/Out[4]= {1.28821, -0.000998969 + 0.0350975 I, -0.000998969 - 0.035097
+5 I,[] 
+ []
 
 [57] [58] [59] [60]
-Overfull \hbox (27.42212pt too wide) in paragraph at lines 227--227
-[]\svtnbf Determining De-cep-tion Us-ing Hadamard Trans-
-
-\hbox(12.0+3.36)x433.62, glue set - 1.0
-.\hbox(11.856+0.0)x50.3517
-..\glue 0.0
-..\svtnbf A
-..\svtnbf .
-..\svtnbf 7
-..\glue 19.87189
-.\svtnbf D
-.\svtnbf e
-.\svtnbf t
-.\svtnbf e
-.etc.
+Overfull \hbox (16.97585pt too wide) in paragraph at lines 227--227
+[]/cmbx12@17.28pt/Determining De-cep-tion Us-ing Hadamard Trans-
+ []
 
 [61]
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 249
+.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 249.
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 249.
+ [62]
 Overfull \hbox (2.02467pt too wide) in paragraph at lines 264--267
-\twlbf Example  \twlrm Now we con-sider the above func-tion over the com-pe-ti-
-tion par-ti-tion (F,F,D). 
+/cmbx12/Example  /cmr12/Now we con-sider the above func-tion over the com-pe-ti
+-tion par-ti-tion (F,F,D). 
+ []
 
-\hbox(9.0+3.0)x433.62, glue set - 1.0
-.\twlbf E
-.\twlbf x
-.\twlbf a
-.\twlbf m
-.\twlbf p
-.etc.
+[63] [64] [65] [66] [67] [68]) [69]
+\openout2 = `appendix2.aux'.
 
-[62] [63] [64] [65] [66] [67]) [68] (appendix2.tex
+ (./appendix2.tex
 
 Compiling appendix2.tex
-[69
+[70
 
 
 
-] [70] [71] [72]) [73] (references.tex
+] [71] [72] [73]) [74]
+\openout2 = `references.aux'.
+
+ (./references.tex
 
 Compiling references.tex
-[74
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.15 \bibitem{walsh}
+                     Beauchamp, K. G. (1975). {\em Walsh functions and their
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.15 \bibitem{walsh}
+                     Beauchamp, K. G. (1975). {\em Walsh functions and their
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.17 \bibitem{funopt}
+                      Bethke, A. D. (1981), {\em Genetic algorithms as function
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.17 \bibitem{funopt}
+                      Bethke, A. D. (1981), {\em Genetic algorithms as function
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.21 \bibitem{bioconcept}
+                          Bledsoe, W. W. (1961). {\em The use of biological
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.21 \bibitem{bioconcept}
+                          Bledsoe, W. W. (1961). {\em The use of biological
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.25 \bibitem{nonuniform}
+                          Bridges, C., Goldberg, D. E. (1989).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.25 \bibitem{nonuniform}
+                          Bridges, C., Goldberg, D. E. (1989).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.30 \bibitem{challenge}
+                         Das, R., \& Whitley, D. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.30 \bibitem{challenge}
+                         Das, R., \& Whitley, D. (1991).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.34 \bibitem{davis}
+                     Davis, L. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.34 \bibitem{davis}
+                     Davis, L. (1991).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.37 \bibitem{traps}
+                     Deb, K. \& Goldberg, D. E. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.37 \bibitem{traps}
+                     Deb, K. \& Goldberg, D. E. (1991).
+? 
+[75
 
 
-] [75] [76] [77] [78] [79] [80]) [81] (thesis.aux (abstract.aux)
-(chapter1.aux) (chapter2.aux) (chapter3.aux) (chapter4.aux) (chapter5.aux)
-(chapter6.aux) (chapter7.aux) (appendix.aux) (appendix2.aux) (references.aux)) 
-) 
+]
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.40 \bibitem{sufficient}
+                          Deb, K., \& Goldberg, D. E. (1992).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.40 \bibitem{sufficient}
+                          Deb, K., \& Goldberg, D. E. (1992).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.44 \bibitem{epistasis}
+                         Davidor, Y. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.44 \bibitem{epistasis}
+                         Davidor, Y. (1991).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.47 \bibitem{forrest}
+                       Forrest, S., \& Mitchell, M. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.47 \bibitem{forrest}
+                       Forrest, S., \& Mitchell, M. (1991).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.51 \bibitem{mindecp}
+                       Goldberg, D. E. (1987). Simple genetic algorithms and...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.51 \bibitem{mindecp}
+                       Goldberg, D. E. (1987). Simple genetic algorithms and...
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.54 \bibitem{bible}
+                     Goldberg, D. E. (1989a). {\em Genetic algorithms in sea...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.54 \bibitem{bible}
+                     Goldberg, D. E. (1989a). {\em Genetic algorithms in sea...
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.56 \bibitem{goldberg89b}
+                           Goldberg, D. E. (1989b).  Genetic algorithms and
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.56 \bibitem{goldberg89b}
+                           Goldberg, D. E. (1989b).  Genetic algorithms and
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.59 \bibitem{goldberg89c}
+                           Goldberg, D. E. (1989c).  Genetic algorithms and
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.59 \bibitem{goldberg89c}
+                           Goldberg, D. E. (1989c).  Genetic algorithms and
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.62 \bibitem{real}
+                    Goldberg, D. E. (1990a). Real-coded genetic algorithms,
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.62 \bibitem{real}
+                    Goldberg, D. E. (1990a). Real-coded genetic algorithms,
+? 
+[76]
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.65 \bibitem{goldberg90b}
+                           Goldberg, D. E. (1990b).  {\em Construction of
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.65 \bibitem{goldberg90b}
+                           Goldberg, D. E. (1990b).  {\em Construction of
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.68 \bibitem{clark}
+                     Goldberg, D. E., Deb, K., \& Clark, J. H. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.68 \bibitem{clark}
+                     Goldberg, D. E., Deb, K., \& Clark, J. H. (1991).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.71 \bibitem{multimodal}
+                          Goldberg, D. E., Deb, K., \& Horn, J. (1992). {\em...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.71 \bibitem{multimodal}
+                          Goldberg, D. E., Deb, K., \& Horn, J. (1992). {\em...
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.74 \bibitem{variance}
+                        Goldberg, D. E., \& Rudnick, M. (1991). Genetic algo...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.74 \bibitem{variance}
+                        Goldberg, D. E., \& Rudnick, M. (1991). Genetic algo...
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.76 \bibitem{sbbh}
+                    Grefenstette, J. J. (1991). Building block hypothesis
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.76 \bibitem{sbbh}
+                    Grefenstette, J. J. (1991). Building block hypothesis
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.79 \bibitem{NP}
+                  Hart, W. \& Belew, R.
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.79 \bibitem{NP}
+                  Hart, W. \& Belew, R.
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.83 \bibitem{holland}
+                       Holland, J. H. (1975).  {\em Adaption in natural and
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.83 \bibitem{holland}
+                       Holland, J. H. (1975).  {\em Adaption in natural and
+? 
+[77]
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.85 \bibitem{hadamard}
+                        Homaifar, A., Qi, X., \& Fost, J. (1991). Analysis and
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.85 \bibitem{hadamard}
+                        Homaifar, A., Qi, X., \& Fost, J. (1991). Analysis and
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.88 \bibitem{hadrev}
+                      Homaifar, A., \& Qi, X. (1990).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.88 \bibitem{hadrev}
+                      Homaifar, A., \& Qi, X. (1990).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.92 \bibitem{order}
+                     Kargupta, H., Deb, K., \& Goldberg, D. E. (1992).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.92 \bibitem{order}
+                     Kargupta, H., Deb, K., \& Goldberg, D. E. (1992).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.95 \bibitem{rugged}
+                      Kauffman, S. A. (1989).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.95 \bibitem{rugged}
+                      Kauffman, S. A. (1989).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.99 \bibitem{physics}
+                       Kauffman, S. A. (1990).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.99 \bibitem{physics}
+                       Kauffman, S. A. (1990).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.103 \bibitem{kaufleg}
+                        Kauffman, S. \& Levin, S. (1987).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.103 \bibitem{kaufleg}
+                        Kauffman, S. \& Levin, S. (1987).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.106 \bibitem{simanneal}
+                          Kirkpatrick, S. , Gelatt, C., \& Vecci, M.  (1983).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.106 \bibitem{simanneal}
+                          Kirkpatrick, S. , Gelatt, C., \& Vecci, M.  (1983).
+? 
+[78]
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.108 \bibitem{lv90a}
+                      Liepins, G. E., \& Vose, M. D. (1990a).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.108 \bibitem{lv90a}
+                      Liepins, G. E., \& Vose, M. D. (1990a).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.111 \bibitem{lv90b}
+                      Liepins, G. E., \& Vose, M. D. (1990b).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.111 \bibitem{lv90b}
+                      Liepins, G. E., \& Vose, M. D. (1990b).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.115 \bibitem{liepins}
+                        Liepins, G. E., \& Vose, M. D. (1991). Deceptiveness...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.115 \bibitem{liepins}
+                        Liepins, G. E., \& Vose, M. D. (1991). Deceptiveness...
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.117 \bibitem{CA}
+                   Lipsitch, M. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.117 \bibitem{CA}
+                   Lipsitch, M. (1991).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.121 \bibitem{fourfall}
+                         Lighthill, M. J. (1959).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.121 \bibitem{fourfall}
+                         Lighthill, M. J. (1959).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.124 \bibitem{manderick}
+                          Manderick, B., de Weger, M., \& Spiessens, P. (1991).
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.124 \bibitem{manderick}
+                          Manderick, B., de Weger, M., \& Spiessens, P. (1991).
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.127 \bibitem{mason}
+                      Mason, A. J. (1991). Partition coefficients, static de...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.127 \bibitem{mason}
+                      Mason, A. J. (1991). Partition coefficients, static de...
+
+? 
+[79]
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.130 \bibitem{whatsdecep}
+                           Mitchell, M. \& Forrest, S. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.130 \bibitem{whatsdecep}
+                           Mitchell, M. \& Forrest, S. (1991).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.134 \bibitem{royalroad}
+                          Mitchell, M. Forrest, S., \& Holland, J. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.134 \bibitem{royalroad}
+                          Mitchell, M. Forrest, S., \& Holland, J. (1991).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.138 \bibitem{forma}
+                      Radcliffe, N. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.138 \bibitem{forma}
+                      Radcliffe, N. (1991).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.141 \bibitem{ruddy}
+                      Rudnick, M. (1991). {\em Genetic algorithms and the va...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.141 \bibitem{ruddy}
+                      Rudnick, M. (1991). {\em Genetic algorithms and the va...
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.145 \bibitem{signal}
+                       Rudnick, M., \& Goldberg, D. E. (1991). {\em Signal, ...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.145 \bibitem{signal}
+                       Rudnick, M., \& Goldberg, D. E. (1991). {\em Signal, ...
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.148 \bibitem{spurrious}
+                          Schaffer, J. D., Eshelman, L. J., \&
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.148 \bibitem{spurrious}
+                          Schaffer, J. D., Eshelman, L. J., \&
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.153 \bibitem{weird}
+                      Sikora, R. (1991). {\em Analysis of deception for
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.153 \bibitem{weird}
+                      Sikora, R. (1991). {\em Analysis of deception for
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.155 \bibitem{fsa}
+                    Szu, H., \& Hartley, R. (1987). Fast simulated annealing.
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.155 \bibitem{fsa}
+                    Szu, H., \& Hartley, R. (1987). Fast simulated annealing.
+? 
+[80]
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.157 \bibitem{tanese}
+                       Tanese, R. (1989).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.157 \bibitem{tanese}
+                       Tanese, R. (1989).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.163 \bibitem{fourier}
+                        Tolstov, G. P. (1962).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.163 \bibitem{fourier}
+                        Tolstov, G. P. (1962).
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.166 \bibitem{vose}
+                     Vose, M., \& Liepins, G. (1991). Schema disruption.
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.166 \bibitem{vose}
+                     Vose, M., \& Liepins, G. (1991). Schema disruption.
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.168 \bibitem{wein87}
+                       Weinberger, E. (1987).  A stochastic generalization
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.168 \bibitem{wein87}
+                       Weinberger, E. (1987).  A stochastic generalization
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.172 \bibitem{wein88}
+                       Weinberger, E. (1988).  A more rigorous derivation of...
+
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.172 \bibitem{wein88}
+                       Weinberger, E. (1988).  A more rigorous derivation of...
+
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.175 \bibitem{weinberger}
+                           Weinberger, E. (1990). Correlated and uncorrelated
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.175 \bibitem{weinberger}
+                           Weinberger, E. (1990). Correlated and uncorrelated
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.178 \bibitem{whitley91}
+                          Whitley, D. (1991a). Fundamental principles of
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.178 \bibitem{whitley91}
+                          Whitley, D. (1991a). Fundamental principles of
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.181 \bibitem{whitley91b}
+                           Whitley, D. (1991b).  Deception, dominance and
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.181 \bibitem{whitley91b}
+                           Whitley, D. (1991b).  Deception, dominance and
+? 
+[81]
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.185 \bibitem{wilson91}
+                         Wilson, S. (1991). GA-easy does not imply
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.185 \bibitem{wilson91}
+                         Wilson, S. (1991). GA-easy does not imply
+? 
+! Undefined control sequence.
+<argument> \@listctr 
+                     
+l.188 \bibitem{wright}
+                       Wright, A. H. (1991).
+? 
+! You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.188 \bibitem{wright}
+                       Wright, A. H. (1991).
+? 
+) [82] (./thesis.aux (./abstract.aux) (./chapter1.aux) (./chapter2.aux)
+(./chapter3.aux) (./chapter4.aux) (./chapter5.aux) (./chapter6.aux)
+(./chapter7.aux) (./appendix.aux) (./appendix2.aux) (./references.aux))
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 547 strings out of 4464
- 4698 string characters out of 63276
- 40125 words of memory out of 262141
- 2281 multiletter control sequences out of 9500
- 19605 words of font info for 74 fonts, out of 72000 for 255
- 16 hyphenation exceptions out of 607
- 17i,12n,17p,232b,213s stack positions out of 300i,40n,60p,3000b,2000s
-
-Output written on thesis.dvi (86 pages, 146660 bytes).
+ 821 strings out of 95437
+ 8917 string characters out of 1190232
+ 57491 words of memory out of 1000001
+ 3744 multiletter control sequences out of 10000+50000
+ 27490 words of font info for 101 fonts, out of 500000 for 1000
+ 16 hyphenation exceptions out of 1000
+ 25i,12n,22p,274b,291s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 318 PDF objects out of 300000
+ 0 named destinations out of 131072
+ 0 words of extra memory for PDF output out of 65536
+{/usr/share/texmf/dvips/tetex/09fbbfac.enc}</usr/share/texmf/fonts/type1/blue
+sky/cm/cmtt12.pfb>{/usr/share/texmf/dvips/tetex/bbad153f.enc}</usr/share/texmf/
+fonts/type1/bluesky/cm/cmsy6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmex1
+0.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy8.pfb>{/usr/share/texmf/dvip
+s/tetex/aae443f0.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmmi6.pfb>{/usr/s
+hare/texmf/dvips/tetex/f7b6d320.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cm
+r6.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi8.pfb>{/usr/share/texmf/dvi
+ps/tetex/74afc74c.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmti12.pfb></usr
+/share/texmf/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bl
+uesky/cm/cmr8.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi12.pfb></usr/sha
+re/texmf/fonts/type1/bluesky/cm/cmbx12.pfb>{/usr/share/texmf/dvips/tetex/0ef0af
+ca.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmcsc10.pfb></usr/share/texmf/f
+onts/type1/bluesky/cm/cmr12.pfb>
+Output written on thesis.pdf (87 pages, 263322 bytes).
