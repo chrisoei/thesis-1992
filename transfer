@@ -1,6 +1,0 @@
-#!/bin/csh
-
-backmeup Latex
-cp README /DOS
-cp xa? /DOS
-
